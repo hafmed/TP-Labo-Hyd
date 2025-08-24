@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/images/TP_Calibrage_Sonde_Pression.jpg</file>
+        <file>qml/images/TP_Cavitation.jpg</file>
+        <file>qml/images/TP_Cheminet_Equilibre.jpg</file>
+        <file>qml/images/TP_Force_pression.jpg</file>
+        <file>qml/images/TP_Viscosim_bille1.jpg</file>
+        <file>qml/images/TP_Viscosim_bille2.jpg</file>
+        <file>qml/images/Viscosim_bille2.png</file>
+        <file>qml/images/log_universite_SAIDA.png</file>
+        <file>qml/images/warning.png</file>
+        <file>qml/images/Viscosim_help1_tp2.jpg</file>
+        <file>qml/images/Viscosim_help1_tp1.jpg</file>
+        <file>qml/images/Viscosim_help1_tp3.jpg</file>
+        <file>qml/images/icon1tp-labo-hyd.png</file>
+        <file>qml/images/TP_4-Fig2.jpg</file>
+        <file>qml/images/TP_4-Fig1.jpg</file>
+        <file>qml/images/TP_4-Fig3.jpg</file>
+        <file>qml/images/TP_4-Fig4.jpg</file>
+        <file>qml/images/TP_4-Fig5.jpg</file>
+        <file>qml/images/TP_4-Fig8.jpg</file>
+        <file>qml/images/TP_4-Fig7.jpg</file>
+        <file>qml/images/TP_4-Fig6.jpg</file>
+        <file>qml/images/TP_Flowmeter_Demonstrator.png</file>
+        <file>qml/images/TP_Flowmeter_Demonstrator.jpg</file>
+        <file>qml/images/C9MKII.jpg</file>
+        <file>qml/images/TP_Vitesse_Sedimentation.jpg</file>
+        <file>qml/images/DP_Venturi_cal.gif</file>
+        <file>qml/images/TP_Diaphgrame.jpg</file>
+        <file>qml/images/TP_5-Fig1.jpg</file>
+        <file>qml/images/io.github.hafmed.TP-Labo-Hyd</file>
+        <file>qml/images/io.github.hafmed.TP-Labo-Hyd.ico</file>
+        <file>qml/images/io.github.hafmed.TP-Labo-Hyd.png</file>
+        <file>qml/images/io.github.hafmed.TP-Labo-Hyd.svg</file>
+        <file>qml/images/io.github.hafmed.TP-Labo-Hyd.jpg</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,19 @@
+    app-id: io.github.hafmed.TP-Labo-Hyd
+    runtime: org.kde.Platform
+    runtime-version: "6.9"
+    sdk: org.kde.Sdk
+    command: apptp_labo_hyd
+    finish-args:
+        - --share=ipc
+        - --socket=fallback-x11
+        - --socket=wayland
+        - --device=dri
+    modules:
+      - name: apptp_labo_hyd
+        buildsystem: cmake-ninja
+        sources:
+           - type: dir
+             path: /home/hafmed/Documents/25-26/tp-labo-hyd/
+
+
+

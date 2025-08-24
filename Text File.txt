@@ -1,0 +1,4 @@
+    axisX.min = Math.floor(miniQexp-0.1*miniQexp);
+                                            axisX.max = Math.ceil(maxQexp+0.1*maxQexp);
+                                            axisY.min = Math.floor(miniQtheo-0.1*miniQtheo);
+                                            axisY.max = Math.ceil(maxQtheo+0.1*maxQtheo);
