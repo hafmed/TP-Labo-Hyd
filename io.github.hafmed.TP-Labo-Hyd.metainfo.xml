@@ -3,7 +3,6 @@
     <id>io.github.hafmed.TP-Labo-Hyd</id>
     <name>Fluid Mechanics Lab Calc.</name>
     <summary>Application provides calculation in practical works in fluid mechanic laboratory.</summary>
-    <url type="homepage">https://sites.google.com/view/tp-labo-hydraulique/</url>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0-or-later</project_license>
     <supports>
@@ -20,6 +19,9 @@
         <keyword>Hydraulic</keyword>
         <keyword>Fluid</keyword>
         <keyword>Laboratory</keyword>
+        <keyword>Qt</keyword>
+        <keyword>qml</keyword>
+        <keyword>Calcul</keyword>
     </keywords>
     <description>
         <p>
@@ -42,7 +44,7 @@
         <release version="1.9.5" date="2025-08-25">
             <url type="details">https://sites.google.com/view/tp-labo-hydraulique/</url>
             <description>
-                <p>Initial Release</p>
+                <p>Latest stable release.</p>
                 <ul>
                     <li>Minor bug fixes</li>
                 </ul>
@@ -55,15 +57,22 @@
     </developer>
     <update_contact>thakir.dz@gmail.com
     </update_contact>
+
+    <url type="homepage">https://sites.google.com/view/tp-labo-hydraulique/</url>
+    <url type="bugtracker">https://github.com/hafmed/TP-Labo-Hyd/issues</url>
+
     <screenshots>
         <screenshot type="default">
-            <image>https://raw.githubusercontent.com/hafmed/Desktop_Thakir_Prayer_Times_Algeria/refs/heads/main/Screenshot/Screenshot_1.jpg</image>
+            <image>https://raw.githubusercontent.com/hafmed/TP-Labo-Hyd/refs/heads/main/Screenshot/Screenshot_1.jpg</image>
+            <caption>Rolling ball viscometer</caption>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/hafmed/Desktop_Thakir_Prayer_Times_Algeria/refs/heads/main/Screenshot/Screenshot_2.jpg</image>
+            <image>https://raw.githubusercontent.com/hafmed/TP-Labo-Hyd/refs/heads/main/Screenshot/Screenshot_2.jpg</image>
+            <caption>Venturi tube</caption>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/hafmed/Desktop_Thakir_Prayer_Times_Algeria/refs/heads/main/Screenshot/Screenshot_3.jpg</image>
+            <image>https://raw.githubusercontent.com/hafmed/TP-Labo-Hyd/refs/heads/main/Screenshot/Screenshot_3.jpg</image>
+            <caption>Calculation of the hydrostatic force and the location of the center of pressure</caption>
         </screenshot>
     </screenshots>
 </component>
