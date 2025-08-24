@@ -57,3 +57,14 @@ install(TARGETS apptp_labo_hyd
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+#install(FILES ${PROJECT_SOURCE_DIR}/io.github.hafmed.TP-Labo-Hyd.metainfo.xml DESTINATION $ENV{HOME}/.local/app/share/metainfo/io.github.hafmed.TP-Labo-Hyd.metainfo.xml)
+
+install(FILES "${PROJECT_SOURCE_DIR}/io.github.hafmed.TP-Labo-Hyd.metainfo.xml"
+        DESTINATION "$ENV{HOME}/.local/app/share/metainfo")
+install(FILES "${PROJECT_SOURCE_DIR}/io.github.hafmed.TP-Labo-Hyd.desktop"
+        DESTINATION "${CMAKE_INSTALL_PREFIX}/share/applications")
+install(FILES "${PROJECT_SOURCE_DIR}/io.github.hafmed.TP-Labo-Hyd.metainfo.xml"
+        DESTINATION "${CMAKE_INSTALL_PREFIX}/share/metainfo")
+install(FILES "${PROJECT_SOURCE_DIR}/io.github.hafmed.TP-Labo-Hyd.png"
+        DESTINATION "${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/256x256/apps")
