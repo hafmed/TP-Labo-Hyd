@@ -15,6 +15,8 @@ Item {
 
     ///Material.theme : Material.System
 
+    property bool darkMode: Application.styleHints.colorScheme === Qt.ColorScheme.Dark
+
     Connections {
         target: Qt.application
         function onActiveChanged() {

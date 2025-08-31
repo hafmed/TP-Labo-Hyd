@@ -405,7 +405,7 @@ Rectangle {
                                     ///wrapMode: Text.WordWrap
                                     selectByMouse: true
                                     renderType: Text.NativeRendering
-                                    ///color:"white"
+                                    color: darkMode ? "white":""
                                     onEditingFinished: {
                                         model.display = text
                                     }
@@ -435,7 +435,7 @@ Rectangle {
                                     ///wrapMode: Text.WordWrap
                                     selectByMouse: true
                                     renderType: Text.NativeRendering
-                                    ///color:"white"
+                                    color: darkMode ? "white":""
                                     onEditingFinished: {
                                         model.display = text
                                     }
@@ -473,7 +473,7 @@ Rectangle {
                         antialiasing: true
                         animationOptions: ChartView.SeriesAnimations
                         legend.visible: false
-                        ///theme: ChartView.ChartThemeDark
+                        theme: darkMode ? ChartView.ChartThemeDark:ChartView.ChartThemeLight
                         ValueAxis {
                             id: axisY
                             gridVisible: true

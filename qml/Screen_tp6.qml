@@ -86,9 +86,12 @@ Rectangle {
                 TextField {
                     id:textt1_tp6
                     width: parent.width/2
+                    ///anchors.centerIn: parent
                     placeholderText: qsTr("t1 (s)")
                     text: settings.t1_tp6
-                    color: Math.abs((t1_tp6-t_moy)/t_moy*100)>5? "red": "green"
+                    ///color: Math.abs((t1_tp6-t_moy)/t_moy*100)>5? "red": "green"
+                    color: textt1_tp6.activeFocus ? textt1_tp6.Material.accentColor
+                                               : (textt1_tp6.hovered ? textt1_tp6.Material.primaryTextColor : textt1_tp6.Material.hintTextColor)
                     inputMethodHints: Qt.ImhDigitsOnly
                     onTextChanged: {if (settings.t1_tp6==="nan" || settings.t1_tp6==="NaN") textt1_tp6.text=0 ;
                         t1_tp6=textt1_tp6.text
@@ -572,6 +575,7 @@ Rectangle {
                         id:rectabview2_tp6
                         width: parent.width
                         height: 175
+                        color: Material.dialogColor
                         HorizontalHeaderView {
                             id: horizontalHeader
                             anchors.left: tabview2_tp6.left
@@ -621,6 +625,7 @@ Rectangle {
                                 text: model.display
                                 padding: 9
                                 ///wrapMode: Text.WordWrap
+                                color: darkMode ? "white":""
                                 readOnly : true
                                 selectByMouse: false
                                 renderType: Text.NativeRendering

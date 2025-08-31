@@ -9,7 +9,6 @@ import QtQuick.Layouts
 Rectangle {
     width: app.width
     height: app.height-rect.height
-
     color: Material.dialogColor
 
     ScrollView {
@@ -429,6 +428,7 @@ Rectangle {
                                                 id:rectabview2_tp5
                                                 width: parent.width
                                                 height: 185
+                                                color: Material.dialogColor
                                                 TableView {
                                                     id:tabview2_tp5
                                                     anchors.fill: parent
@@ -492,6 +492,7 @@ Rectangle {
                                                         ///wrapMode: Text.WordWrap
                                                         selectByMouse: true
                                                         renderType: Text.NativeRendering
+                                                        color: darkMode ? "white":""
                                                         onTextEdited: {
                                                             model.display = text
                                                         }
@@ -579,7 +580,7 @@ Rectangle {
                                 antialiasing: true
                                 animationOptions: ChartView.SeriesAnimations
                                 ///legend.visible: false
-                                ///theme: ChartView.ChartThemeDark
+                                theme: darkMode ? ChartView.ChartThemeDark:ChartView.ChartThemeLight
                                 ScatterSeries{
                                     id:scatterSerie1_tp5
                                     axisX: axisX
@@ -1067,6 +1068,7 @@ Rectangle {
                                                 id:rectabview2_Diaphra_tp5
                                                 width: parent.width
                                                 height: 185
+                                                color: Material.dialogColor
                                                 TableView {
                                                     id:tabview2_Diaphra_tp5
                                                     anchors.fill: parent
@@ -1130,6 +1132,7 @@ Rectangle {
                                                         ///wrapMode: Text.WordWrap
                                                         selectByMouse: true
                                                         renderType: Text.NativeRendering
+                                                        color: darkMode ? "white":""
                                                         onTextEdited: {
                                                             model.display = text
                                                         }
@@ -1218,7 +1221,7 @@ Rectangle {
                                 antialiasing: true
                                 animationOptions: ChartView.SeriesAnimations
                                 ///legend.visible: false
-                                theme: ChartView.ChartThemeDark
+                                theme: darkMode ? ChartView.ChartThemeDark:ChartView.ChartThemeLight
                                 ScatterSeries{
                                     id:scatterSerie1_Diaphra_tp5
                                     axisX: axisX_Diaphra
@@ -1313,15 +1316,10 @@ Rectangle {
                                         }
                                     }
                                 }
-
-
                             }
                         }
-
                     }
-
                 }///fin
-
             }
         }
     }
