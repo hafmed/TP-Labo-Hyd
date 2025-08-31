@@ -6,9 +6,8 @@ import QtQuick.Controls.Material 2.12
 Rectangle {
     width: app.width
     height: app.height-rect.height
-    color:"transparent"
-    Material.theme: Material.Dark
-    Material.accent: Material.Purple
+
+    color: Material.dialogColor
 
     function configcaractball(index) {
         comboxballcurrentIndex_tp2=index

@@ -9,6 +9,10 @@
 #include <QQmlEngine>
 #include <QQuickView>
 
+#include <QQuickStyle>
+
+ #include <QStyleHints>
+ #include <QtGlobal> // For Qt::ColorScheme
 
 int main(int argc, char *argv[])
 {
@@ -21,12 +25,33 @@ int main(int argc, char *argv[])
 
     QGuiApplication::setDesktopFileName(QStringLiteral("org.flatpak.basic_numerical_methods"));
 
-    // qputenv("QT_QUICK_CONTROLS_STYLE", QByteArray("Material"));
-    // qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", QByteArray("Dark"));
-    // qputenv("QT_QUICK_CONTROLS_MATERIAL_ACCENT", QByteArray("Orange"));
+    QQuickStyle::setStyle("Material");
+
+    qputenv("QT_QUICK_CONTROLS_STYLE", QByteArray("Material"));
+    qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", QByteArray("System"));
+    qputenv("QT_QUICK_CONTROLS_MATERIAL_VARIANT", QByteArray("Dense"));
+    qputenv("QT_QUICK_CONTROLS_CONF", QByteArray(":/qtquickcontrols2.conf"));
+    // qputenv("QT_QUICK_CONTROLS_MATERIAL_ACCENT", QByteArray("Purple"));
+    // qputenv("QT_QUICK_CONTROLS_MATERIAL_PRIMARY", QByteArray("BlueGrey"));
+
+    // qputenv("QT_QUICK_CONTROLS_MATERIAL_FOREGROUND", QByteArray("Teal"));
+    // qputenv("QT_QUICK_CONTROLS_MATERIAL_BACKGROUND", QByteArray("Pink"));
+
+
     app.setWindowIcon(QIcon(":/qml/images/io.github.hafmed.TP-Labo-Hyd.jpg"));
     app.setOrganizationName("hafsoftdz");
     app.setOrganizationDomain("org.hafsoftdz");
+
+
+    QGuiApplication::styleHints()->colorScheme();
+
+    // connect(QGuiApplication::styleHints(), &QStyleHints::colorSchemeChanged, app, [app](Qt::ColorScheme scheme) {
+    //     if (scheme == Qt::ColorScheme::Dark) {
+    //             qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", QByteArray("System"));
+    //     } else {
+    //             qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME", QByteArray("System"));
+    //     }
+    // });
 
     // OpenGL backend is required to make AbstractSeries.useOpenGL work.
     // We don't force it programmatically, as OpenGL is not guaranteed to be available everywhere.
@@ -56,7 +81,7 @@ int main(int argc, char *argv[])
 
     viewer.setSource(QUrl("qrc:/qml/Main.qml"));
     viewer.setResizeMode(QQuickView::SizeRootObjectToView);
-    viewer.setColor(QColor("#404040"));
+   /// viewer.setColor(QColor("#404040"));
     viewer.show();
 
     return app.exec();

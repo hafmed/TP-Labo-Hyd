@@ -10,8 +10,10 @@ Item {
     height: 650
     LayoutMirroring.enabled: false
     LayoutMirroring.childrenInherit: false
-    Material.theme: Material.Dark
-    Material.accent: Material.Purple
+    ///Material.theme: Material.Dark
+    ///Material.accent: Material.Purple
+
+    ///Material.theme : Material.System
 
     Connections {
         target: Qt.application
@@ -186,7 +188,7 @@ Item {
         property real t_moy
 
     }
-    property string appVer:"1.9.5"
+    property string appVer: "1.9.7"
     ///property bool firstuseofapp
     property int scopeViewcount:scopeView.count
     property int tabBarcurrentIndex: 0
@@ -890,7 +892,7 @@ Item {
     //     id: aboutDialog
     // }
 
-    property string link: "https://sites.google.com/view/tp-labo-hydraulique/";
+    property string link: "mailto:thakir.dz@gmail.com?subject=About%20Fluid%20Mechanics%20Lab%20Calc.%20(Ver: "+appVer+")%20 ; On " +Qt.platform.os
     Dialog {
         id: aboutappDialog
         title: "TP LABO Hydraulique ver "+appVer
@@ -898,8 +900,8 @@ Item {
         Text {
             id:textaboutdialog_tp
             width: parent.width
-            text: "M. HAFIANE Mohamed in collaboration with: M. CHAFI Chafi and M. ZERAGUET Mohamed"+
-                  '<html><style type="text/css"></style><br><a  href="' +link + '">  Documentation site of "TP LABO Hydraulique"</a></html>'
+            text: "M. HAFIANE Mohamed in collaboration with: M. CHAFI Chafi and M. ZERAGUET Mohamed ; "+
+                  "If you found any bug, please contact me in e-mail: <a href=\"mailto:thakir.dz@gmail.com?subject=About%20Fluid%20Mechanics%20Lab%20Calc.%20(Ver: "+appVer+")%20 ; On " +Qt.platform.os+" \">thakir.dz@gmail.com</a>"
             wrapMode: Text.WordWrap
             font.bold : true
             horizontalAlignment: Text.AlignHCenter
@@ -916,7 +918,7 @@ Item {
             id:textfirstuseofappdialog_tp
             width: parent.width
             text: "Hopefully this application will help you in your practical experience in a fluid mechanics lab. "+
-                  "If you found any bug, please contact me in e-mail: <a href=\"mailto:thakir.dz@gmail.com?subject=About%20Thakir%20Prayer%20Times%20(Ver:"+appVer+")%20SailfishOS\">thakir.dz@gmail.com</a>"
+                  "If you found any bug, please contact me in e-mail: <a href=\"mailto:thakir.dz@gmail.com?subject=About%20Fluid%20Mechanics%20Lab%20Calc.%20(Ver: "+appVer+")%20 On " +Qt.platform.os+" \">thakir.dz@gmail.com</a>"
             wrapMode: Text.Wrap
             font.bold : true
             horizontalAlignment: Text.AlignHCenter
@@ -975,7 +977,8 @@ Item {
             id:rect
             width: parent.width-imagelogouniv_tp1.width
             height: 150
-            color:"transparent"
+            ///color:"transparent"
+            color: Material.dialogColor
             ListModel {
                 id: nameModel
                 ListElement { file: "images/TP_Viscosim_bille1.jpg"
@@ -1057,12 +1060,19 @@ Item {
                 Keys.onRightPressed: incrementCurrentIndex()
             }
         }
+        Rectangle {
+            id:rect_image_US
+            width: parent.width-imagelogouniv_tp1.width
+            height: 150
+            ///color:"transparent"
+            color: Material.dialogColor
         Image {
             id: imagelogouniv_tp1
             width: parent.width/5
             smooth: true
             fillMode: Image.PreserveAspectFit
             source: "images/log_universite_SAIDA.png"
+        }
         }
     }
     TabBar {

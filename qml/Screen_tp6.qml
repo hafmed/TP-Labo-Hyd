@@ -9,9 +9,9 @@ import QtQuick.Layouts
 Rectangle {
     width: app.width
     height: app.height-rect.height
-    color:"transparent"
-    Material.theme: Material.Dark
-    Material.accent: Material.Purple
+
+    color: Material.dialogColor
+
     property real vtheo
     property int nt1:1
     property int nt2:1

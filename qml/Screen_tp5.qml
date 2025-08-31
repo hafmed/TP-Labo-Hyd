@@ -9,9 +9,8 @@ import QtQuick.Layouts
 Rectangle {
     width: app.width
     height: app.height-rect.height
-    color:"transparent"
-    Material.theme: Material.Dark
-    Material.accent: Material.Purple
+
+    color: Material.dialogColor
 
     ScrollView {
         anchors.fill: parent
@@ -580,7 +579,7 @@ Rectangle {
                                 antialiasing: true
                                 animationOptions: ChartView.SeriesAnimations
                                 ///legend.visible: false
-                                theme: ChartView.ChartThemeDark
+                                ///theme: ChartView.ChartThemeDark
                                 ScatterSeries{
                                     id:scatterSerie1_tp5
                                     axisX: axisX
@@ -1204,7 +1203,8 @@ Rectangle {
                         Rectangle {
                             width: parent.width-rectabview1_Diaphra_tp5.width
                             height: rectabview1_Diaphra_tp5.height
-                            color:"transparent"
+                            ///color:"transparent"
+                            color: Material.dialogColor
                             ChartView {
                                 id: myChart_Diaphra_tp5
                                 clip: true

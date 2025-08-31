@@ -9,9 +9,8 @@ import QtQuick.Layouts
 Rectangle {
     width: app.width
     height: app.height-rect.height
-    color:"transparent"
-    Material.theme: Material.Dark
-    Material.accent: Material.Purple
+
+    color: Material.dialogColor
 
     ScrollView {
         anchors.fill: parent

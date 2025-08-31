@@ -8,5 +8,7 @@
         <file>qml/Screen_tp4.qml</file>
         <file>qml/Screen_tp5.qml</file>
         <file>qml/Screen_tp6.qml</file>
+        <file>qml/Theme.qml</file>
+        <file>qtquickcontrols2.conf</file>
     </qresource>
 </RCC>

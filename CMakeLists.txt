@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(tp_labo_hyd VERSION 1.9.5 LANGUAGES CXX)
+project(tp_labo_hyd VERSION 1.9.7 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Charts Core Gui Qml Quick)
+find_package(Qt6 REQUIRED COMPONENTS Charts Core Gui Qml Quick QuickControls2)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -40,6 +40,7 @@ target_link_libraries(apptp_labo_hyd PUBLIC
     Qt::Gui
     Qt::Qml
     Qt::Quick
+    Qt6::QuickControls2
 )
 
 qt_add_qml_module(apptp_labo_hyd
@@ -49,6 +50,8 @@ qt_add_qml_module(apptp_labo_hyd
     SOURCES calculhaf.h calculhaf.cpp
     SOURCES fparser.cc fpoptimizer.cc fpconfig.hh fparser.hh
     SOURCES
+    RESOURCES
+    QML_FILES
 )
 
 include(GNUInstallDirs)

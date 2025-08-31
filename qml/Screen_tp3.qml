@@ -9,9 +9,8 @@ import QtQuick.Layouts
 Rectangle {
     width: app.width
     height: app.height-rect.height
-    color:"transparent"
-    Material.theme: Material.Dark
-    Material.accent: Material.Purple
+
+    color: Material.dialogColor
 
     function calculmass() {
         mass=0;
@@ -407,7 +406,7 @@ Rectangle {
                                     ///wrapMode: Text.WordWrap
                                     selectByMouse: true
                                     renderType: Text.NativeRendering
-                                    color:"white"
+                                    ///color:"white"
                                     onEditingFinished: {
                                         model.display = text
                                     }
@@ -438,7 +437,7 @@ Rectangle {
                                     ///wrapMode: Text.WordWrap
                                     selectByMouse: true
                                     renderType: Text.NativeRendering
-                                    color:"white"
+                                    ///color:"white"
                                     onEditingFinished: {
                                         model.display = text
                                     }
@@ -469,7 +468,7 @@ Rectangle {
                                     ///wrapMode: Text.WordWrap
                                     selectByMouse: true
                                     renderType: Text.NativeRendering
-                                    color:"white"
+                                    ///color:"white"
                                     onEditingFinished: {
                                         model.display = text
                                     }
@@ -508,7 +507,7 @@ Rectangle {
                         antialiasing: true
                         animationOptions: ChartView.SeriesAnimations
                         ///legend.visible: false
-                        theme: ChartView.ChartThemeDark
+                        ///theme: ChartView.ChartThemeDark
                         ScatterSeries{
                             id:scatterSerie1_tp3
                             axisX: axisX

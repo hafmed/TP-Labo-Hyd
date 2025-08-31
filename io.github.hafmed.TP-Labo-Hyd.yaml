@@ -13,7 +13,7 @@
         buildsystem: cmake-ninja
         sources:
            - type: dir
-             path: /home/hafmed/Documents/25-26/tp-labo-hyd/
+             path: /home/hafmed/Documents/25-26/TP-Labo-Hyd-1.9.7/
 
 
 

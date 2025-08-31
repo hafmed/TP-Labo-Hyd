@@ -9,9 +9,7 @@ import QtQuick.Layouts
 Rectangle {
     width: app.width
     height: app.height-rect.height
-    color:"transparent"
-    Material.theme: Material.Dark
-    Material.accent: Material.Pink
+    color: Material.dialogColor
 
     function configcaractball(index) {
         comboxballcurrentIndex_tp1=index
@@ -407,7 +405,7 @@ Rectangle {
                                     ///wrapMode: Text.WordWrap
                                     selectByMouse: true
                                     renderType: Text.NativeRendering
-                                    color:"white"
+                                    ///color:"white"
                                     onEditingFinished: {
                                         model.display = text
                                     }
@@ -437,7 +435,7 @@ Rectangle {
                                     ///wrapMode: Text.WordWrap
                                     selectByMouse: true
                                     renderType: Text.NativeRendering
-                                    color:"white"
+                                    ///color:"white"
                                     onEditingFinished: {
                                         model.display = text
                                     }
@@ -475,7 +473,7 @@ Rectangle {
                         antialiasing: true
                         animationOptions: ChartView.SeriesAnimations
                         legend.visible: false
-                        theme: ChartView.ChartThemeDark
+                        ///theme: ChartView.ChartThemeDark
                         ValueAxis {
                             id: axisY
                             gridVisible: true
