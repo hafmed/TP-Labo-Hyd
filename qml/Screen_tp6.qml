@@ -57,7 +57,7 @@ Rectangle {
     }
     Dialog {
         id: dialogMessageErrorFparser
-        title: "TP LABO Hydraulique ver "+appVer
+        title: "Fluid Mechanics Lab Calc. ver "+appVer
         anchors.centerIn: Overlay.overlay
         Text {
             id:textfirstuseofappdialog_tp
