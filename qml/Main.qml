@@ -897,7 +897,7 @@ Item {
     property string link: "mailto:thakir.dz@gmail.com?subject=About%20Fluid%20Mechanics%20Lab%20Calc.%20(Ver: "+appVer+")%20 ; On " +Qt.platform.os
     Dialog {
         id: aboutappDialog
-        title: "TP LABO Hydraulique ver "+appVer
+        title: "Fluid Mechanics Lab Calc. ver "+appVer
         anchors.centerIn: Overlay.overlay
         Text {
             id:textaboutdialog_tp
@@ -914,7 +914,7 @@ Item {
     }
     Dialog {
         id: firstuseofappDialog
-        title: "TP LABO Hydraulique ver "+appVer
+        title: "Fluid Mechanics Lab Calc. ver "+appVer
         anchors.centerIn: Overlay.overlay
         Text {
             id:textfirstuseofappdialog_tp
@@ -954,7 +954,7 @@ Item {
 
     Dialog {
         id: loaddefaultsettingsDialog
-        title: "TP LABO Hydraulique ver "+appVer
+        title: "Fluid Mechanics Lab Calc. ver "+appVer
         anchors.centerIn: Overlay.overlay
         Text {
             id:textdialog_tp
