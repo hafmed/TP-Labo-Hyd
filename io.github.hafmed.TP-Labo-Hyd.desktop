@@ -8,3 +8,5 @@ Icon=io.github.hafmed.TP-Labo-Hyd
 Exec=apptp_labo_hyd
 Terminal=false
 Keywords=Science;engineering;Experimental;Hydraulic;Laboratory;Fluid Mechanics;Calcul;Flow;Water;armfield;TQ équipements;DELTALAB;ENTEC;Gunt;TP Hydraulique;training equipment;C++;Qt;qml;
+X-Purism-FormFactor=Workstation;Mobile;
+X-KDE-FormFactor=desktop;tablet;handset;
