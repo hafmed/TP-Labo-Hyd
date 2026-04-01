@@ -263,7 +263,7 @@ Rectangle {
 
                                             ///----------------
                                             myChart_tp5.removeAllSeries();
-                                            var line = myChart_tp5.createSeries(ChartView.SeriesTypeScatter, "Qtheo =f (Qexp) Venturi", axisX, axisY);
+                                            var line = myChart_tp5.createSeries(ChartView.SeriesTypeScatter, "Qtheo=f(Qexp) Venturi", axisX, axisY);
 
                                             line.color = Qt.rgba(Math.random(),Math.random(),Math.random(),1);
                                             line.hovered.connect(function(point, state){ console.log(point); }); // connect onHovered signal to a function
@@ -1279,7 +1279,7 @@ Rectangle {
 
                                             ///----------------
                                             myChart_Diaphra_tp5.removeAllSeries();
-                                            var line = myChart_Diaphra_tp5.createSeries(ChartView.SeriesTypeScatter, "Qtheo =f (Qexp) Orifice", axisX_Diaphra, axisY_Diaphra);
+                                            var line = myChart_Diaphra_tp5.createSeries(ChartView.SeriesTypeScatter, "Qtheo=f(Qexp) Orifice", axisX_Diaphra, axisY_Diaphra);
 
                                             line.color = Qt.rgba(Math.random(),Math.random(),Math.random(),1);
                                             line.hovered.connect(function(point, state){ console.log(point); }); // connect onHovered signal to a function
