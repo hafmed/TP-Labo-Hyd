@@ -292,6 +292,45 @@ Rectangle {
                                             axisX.max = Math.ceil(maxQexp+0.1*maxQexp);
                                             axisY.min = Math.floor(miniQtheo-0.1*miniQtheo);
                                             axisY.max = Math.ceil(maxQtheo+0.1*maxQtheo);
+                                            ///-haf  1-04-2026---Venturie
+                                            /////----------1-4-2026-------------calculerMoindresCarres-----------------------------
+                                            ///// Fonction pour calculer la pente a et le coefficient de correlation r pour y=ax
+                                            ///// a=somme(xi*yi)/somme(xi^2)
+                                            ///// Pente a Minimise somme((yi-a*xi)^2)
+                                            ///// Le coefficient r=somme(xi*yi)/sqrt(somme(xi^2)*somme(yi^2)) de corrélation évalue
+                                            ///// la qualité de l'ajustement.
+
+                                            var sommeXY = 0.0;
+                                            var sommeX2 = 0.0;
+                                            var sommeY2 = 0.0;
+
+                                            for ( i = 0; i < tableModel1_venturie_tp5.rowCount; ++i) {
+                                                sommeXY += tableModel1_venturie_tp5.rows[i].Qexp * tableModel1_venturie_tp5.rows[i].Qtheo;
+                                                sommeX2 += tableModel1_venturie_tp5.rows[i].Qexp * tableModel1_venturie_tp5.rows[i].Qexp;
+                                                sommeY2 += tableModel1_venturie_tp5.rows[i].Qtheo * tableModel1_venturie_tp5.rows[i].Qtheo;
+                                            }
+
+                                            if (sommeX2 == 0 && sommeY2 == 0 ) return 0; // Éviter la division par zéro
+                                            var a= sommeXY / sommeX2; ///// Calcul de la pente a (Moindres carrés)
+                                            /////// Calcul du coefficient de corrélation r (Pearson spécifique à y=ax)
+                                            var r = sommeXY / Math.sqrt(sommeX2 * sommeY2); /// Coefficient de corrélation r
+                                            var Cdreg=1/a;
+                                            // console.log("Cdreg="+Cdreg);
+                                            // console.log("r="+r);
+
+                                            var line1 = myChart_tp5.createSeries(ChartView.SeriesTypeLine, "Regression: Cd="+Cdreg.toFixed(3)+"; r="+r.toFixed(5), axisX, axisY);
+
+                                            line1.color = Qt.rgba(Math.random(),Math.random(),Math.random(),1);
+                                            line1.hovered.connect(function(point, state){ console.log(point); }); // connect onHovered signal to a function
+                                            for (i = 0; i < tableModel1_venturie_tp5.rowCount; i++)  {
+                                                if (tableModel1_venturie_tp5.rows[i].Qexp!==0
+                                                        && tableModel1_venturie_tp5.rows[i].Qtheo!==""
+                                                        )
+                                                    line1.append(tableModel1_venturie_tp5.rows[i].Qexp,tableModel1_venturie_tp5.rows[i].Qexp*a)
+                                            }
+                                            line1.append(0,0)
+                                            line1.append(Math.ceil(maxQexp+0.1*maxQexp),(Math.ceil(maxQexp+0.1*maxQexp))/Cdreg)
+                                            /////-----------------------------------------------------------------------------------
                                         }
                                     }
                                     delegate: DelegateChooser {
@@ -1270,7 +1309,45 @@ Rectangle {
                                             axisX_Diaphra.max = Math.ceil(maxQexp_Diaphra+0.1*maxQexp_Diaphra);
                                             axisY_Diaphra.min = Math.floor(miniQtheo_Diaphra-0.1*miniQtheo_Diaphra);
                                             axisY_Diaphra.max = Math.ceil(maxQtheo_Diaphra+0.1*maxQtheo_Diaphra);
-                                            ///
+                                            ///-haf  1-04-2026---Diaph
+                                            /////----------1-4-2026-------------calculerMoindresCarres-----------------------------
+                                            ///// Fonction pour calculer la pente a et le coefficient de correlation r pour y=ax
+                                            ///// a=somme(xi*yi)/somme(xi^2)
+                                            ///// Pente a Minimise somme((yi-a*xi)^2)
+                                            ///// Le coefficient r=somme(xi*yi)/sqrt(somme(xi^2)*somme(yi^2)) de corrélation évalue
+                                            ///// la qualité de l'ajustement.
+
+                                            var sommeXY = 0.0;
+                                            var sommeX2 = 0.0;
+                                            var sommeY2 = 0.0;
+
+                                            for ( i = 0; i < tableModel1_Diaphra_tp5.rowCount; ++i) {
+                                                sommeXY += tableModel1_Diaphra_tp5.rows[i].Qexp * tableModel1_Diaphra_tp5.rows[i].Qtheo;
+                                                sommeX2 += tableModel1_Diaphra_tp5.rows[i].Qexp * tableModel1_Diaphra_tp5.rows[i].Qexp;
+                                                sommeY2 += tableModel1_Diaphra_tp5.rows[i].Qtheo * tableModel1_Diaphra_tp5.rows[i].Qtheo;
+                                            }
+
+                                            if (sommeX2 == 0 && sommeY2 == 0 ) return 0; // Éviter la division par zéro
+                                            var a= sommeXY / sommeX2; ///// Calcul de la pente a (Moindres carrés)
+                                            /////// Calcul du coefficient de corrélation r (Pearson spécifique à y=ax)
+                                            var r = sommeXY / Math.sqrt(sommeX2 * sommeY2); /// Coefficient de corrélation r
+                                            var Cdreg=1/a;
+                                            // console.log("Cdreg="+Cdreg);
+                                            // console.log("r="+r);
+
+                                            var line1 = myChart_Diaphra_tp5.createSeries(ChartView.SeriesTypeLine, "Regression: Cd="+Cdreg.toFixed(3)+"; r="+r.toFixed(5), axisX_Diaphra, axisY_Diaphra);
+
+                                            line1.color = Qt.rgba(Math.random(),Math.random(),Math.random(),1);
+                                            line1.hovered.connect(function(point, state){ console.log(point); }); // connect onHovered signal to a function
+                                            for (i = 0; i < tableModel1_Diaphra_tp5.rowCount; i++)  {
+                                                if (tableModel1_Diaphra_tp5.rows[i].Qexp!==0
+                                                        && tableModel1_Diaphra_tp5.rows[i].Qtheo!==""
+                                                        )
+                                                    line1.append(tableModel1_Diaphra_tp5.rows[i].Qexp,tableModel1_Diaphra_tp5.rows[i].Qexp*a)
+                                            }
+                                            line1.append(0,0)
+                                            line1.append(Math.ceil(maxQexp_Diaphra+0.1*maxQexp_Diaphra),(Math.ceil(maxQexp_Diaphra+0.1*maxQexp_Diaphra))/Cdreg)
+                                            /////-----------------------------------------------------------------------------------
                                         }
                                      }
                                     delegate: DelegateChooser {
@@ -2005,7 +2082,7 @@ Rectangle {
         }
     }
     Component.onCompleted: {
-        console.log("temps1amodelQexp_tp5="+temps1amodelQexp_tp5)
+        ///console.log("temps1amodelQexp_tp5="+temps1amodelQexp_tp5)
         ///console.log("settings.dh1tableModel1_venturie_tp5=:"+settings.dh1tableModel1_venturie_tp5)
         tableModel1_venturie_tp5.appendRow({Qexp:settings.qexp1tableModel1_venturie_tp5,DH:settings.dh1tableModel1_venturie_tp5,Qtheo:settings.qtheo1tableModel1_venturie_tp5,Cd:settings.cd1tableModel1_venturie_tp5})
         tableModel1_venturie_tp5.appendRow({Qexp:settings.qexp2tableModel1_venturie_tp5,DH:settings.dh2tableModel1_venturie_tp5,Qtheo:settings.qtheo2tableModel1_venturie_tp5,Cd:settings.cd2tableModel1_venturie_tp5})
