@@ -303,9 +303,11 @@ Rectangle {
                                                 width: 50
                                                 text: model.display
                                                 onClicked:{
-                                                    tp_5_Dialog2_Venturie.open()
-                                                    ///console.log("clicked"+tableModel1_venturie_tp5.rows[index].DH+":"+index)
+                                                    console.log("clicked"+tableModel1_venturie_tp5.rows[index].DH+":"+index)
                                                     indexqexpMoy=index
+                                                    if (indexqexpMoy===0) {tp_5_Dialog2_Venturie_a.open()}
+                                                    if (indexqexpMoy===1) {tp_5_Dialog2_Venturie_b.open()}
+                                                    if (indexqexpMoy===2) {tp_5_Dialog2_Venturie_c.open()}
                                                 }
                                                 onTextChanged: {
                                                     qexp1tableModel1_venturie_tp5=tableModel1_venturie_tp5.rows[0].Qexp
@@ -394,8 +396,9 @@ Rectangle {
                                             }
                                         }
                                     }
+
                                     Dialog {
-                                        id: tp_5_Dialog2_Venturie
+                                        id: tp_5_Dialog2_Venturie_a
                                         title: "Flow rate measurement (Venturi)"
                                         anchors.centerIn: Overlay.overlay
                                         width:app.width
@@ -436,21 +439,21 @@ Rectangle {
                                                     // rowSpacing: 1
                                                     boundsBehavior: Flickable.StopAtBounds
                                                     model: TableModel {
-                                                        id:tableModelQexp_tp5
+                                                        id:tableModelQexp_tp5_a
                                                         TableModelColumn { display: "Volume" }
                                                         TableModelColumn { display: "Temps" }
                                                         TableModelColumn { display: "Qexp" }
                                                         function calculQexpMoy_tp5()
                                                         {
-                                                            volume1modelQexp_tp5=tableModelQexp_tp5.rows[2].Volume
-                                                            temps1modelQexp_tp5=tableModelQexp_tp5.rows[2].Temps
-                                                            qexp1modelQexp_tp5=(volume1modelQexp_tp5/temps1modelQexp_tp5).toFixed(3)
-                                                            volume2modelQexp_tp5=tableModelQexp_tp5.rows[3].Volume
-                                                            temps2modelQexp_tp5=tableModelQexp_tp5.rows[3].Temps
-                                                            qexp2modelQexp_tp5=(volume2modelQexp_tp5/temps2modelQexp_tp5).toFixed(3)
-                                                            volume3modelQexp_tp5=tableModelQexp_tp5.rows[4].Volume
-                                                            temps3modelQexp_tp5=tableModelQexp_tp5.rows[4].Temps
-                                                            qexp3modelQexp_tp5=(volume3modelQexp_tp5/temps3modelQexp_tp5).toFixed(3)
+                                                            volume1amodelQexp_tp5=tableModelQexp_tp5_a.rows[2].Volume
+                                                            temps1amodelQexp_tp5=tableModelQexp_tp5_a.rows[2].Temps
+                                                            qexp1amodelQexp_tp5=(volume1amodelQexp_tp5/temps1amodelQexp_tp5).toFixed(3)
+                                                            volume2amodelQexp_tp5=tableModelQexp_tp5_a.rows[3].Volume
+                                                            temps2amodelQexp_tp5=tableModelQexp_tp5_a.rows[3].Temps
+                                                            qexp2amodelQexp_tp5=(volume2amodelQexp_tp5/temps2amodelQexp_tp5).toFixed(3)
+                                                            volume3amodelQexp_tp5=tableModelQexp_tp5_a.rows[4].Volume
+                                                            temps3amodelQexp_tp5=tableModelQexp_tp5_a.rows[4].Temps
+                                                            qexp3amodelQexp_tp5=(volume3amodelQexp_tp5/temps3amodelQexp_tp5).toFixed(3)
 
                                                             savesettings()
                                                         }
@@ -466,24 +469,24 @@ Rectangle {
                                                                 Qexp: "(l/s)",
                                                             },
                                                             {
-                                                                Volume: settings.volume1modelQexp_tp5,
-                                                                Temps: settings.temps1modelQexp_tp5,
-                                                                Qexp: settings.qexp1modelQexp_tp5,
+                                                                Volume: settings.volume1amodelQexp_tp5,
+                                                                Temps: settings.temps1amodelQexp_tp5,
+                                                                Qexp: settings.qexp1amodelQexp_tp5,
                                                             },
                                                             {
-                                                                Volume: settings.volume2modelQexp_tp5,
-                                                                Temps: settings.temps2modelQexp_tp5,
-                                                                Qexp: settings.qexp2modelQexp_tp5,
+                                                                Volume: settings.volume2amodelQexp_tp5,
+                                                                Temps: settings.temps2amodelQexp_tp5,
+                                                                Qexp: settings.qexp2amodelQexp_tp5,
                                                             },
                                                             {
-                                                                Volume: settings.volume3modelQexp_tp5,
-                                                                Temps: settings.temps3modelQexp_tp5,
-                                                                Qexp: settings.qexp3modelQexp_tp5,
+                                                                Volume: settings.volume3amodelQexp_tp5,
+                                                                Temps: settings.temps3amodelQexp_tp5,
+                                                                Qexp: settings.qexp3amodelQexp_tp5,
                                                             }
                                                         ]
                                                     }
                                                     delegate:  TextInput {
-                                                        id:textItemQexp_tp5
+                                                        id:textItemQexp_tp5_a
                                                         verticalAlignment: Text.AlignVCenter
                                                         horizontalAlignment: Text.AlignHCenter
                                                         inputMethodHints: Qt.ImhDigitsOnly
@@ -497,12 +500,12 @@ Rectangle {
                                                             model.display = text
                                                         }
                                                         onAccepted:  {
-                                                            tableModelQexp_tp5.calculQexpMoy_tp5();
+                                                            tableModelQexp_tp5_a.calculQexpMoy_tp5();
                                                         }
                                                         Rectangle {
                                                             anchors.fill: parent
-                                                            height: textItemQexp_tp5.implicitHeight
-                                                            width: textItemQexp_tp5.implicitWidth
+                                                            height: textItemQexp_tp5_a.implicitHeight
+                                                            width: textItemQexp_tp5_a.implicitWidth
                                                             ///width: parent.width/2
                                                             color:"transparent"
                                                             z: -1
@@ -516,49 +519,386 @@ Rectangle {
                                                 width: parent.width
                                                 text: qsTr("Calcul Qexp")
                                                 onClicked: {
-                                                    tableModelQexp_tp5.calculQexpMoy_tp5();
+                                                    tableModelQexp_tp5_a.calculQexpMoy_tp5();
                                                 }
                                             }
                                             Row {
                                                 width: parent.width
                                                 spacing: 2
                                                 Label {
-                                                    id:labeltextQexp_tp5
+                                                    id:labeltextQexp_tp5_a
                                                     width: text.width
-                                                    height: textQexp_tp5.height
+                                                    height: textQexp_tp5_a.height
                                                     text: qsTr("QexpMoy=")
                                                     horizontalAlignment: Text.AlignRight
                                                     verticalAlignment: Text.AlignVCenter
                                                 }
                                                 TextField {
-                                                    id:textQexp_tp5
-                                                    width: parent.width-labeltextQexp_tp5.width-labeltextunitQexp_tp5.width-10
+                                                    id:textQexp_tp5_a
+                                                    width: parent.width-labeltextQexp_tp5_a.width-labeltextunitQexp_tp5_a.width-10
                                                     placeholderText: qsTr("QexpMoy")
                                                     ///enabled: false
-                                                    text: ((qexp1modelQexp_tp5+qexp2modelQexp_tp5+qexp3modelQexp_tp5)/3).toFixed(3)
-                                                    onTextChanged: qexpMoy=textQexp_tp5.text
+                                                    text: ((qexp1amodelQexp_tp5+qexp2amodelQexp_tp5+qexp3amodelQexp_tp5)/3).toFixed(3)
+                                                    onTextChanged: qexpMoya=textQexp_tp5_a.text
                                                 }
                                                 Label {
-                                                    id:labeltextunitQexp_tp5
+                                                    id:labeltextunitQexp_tp5_a
                                                     width: text.width
-                                                    height: textQexp_tp5.height
+                                                    height: textQexp_tp5_a.height
                                                     text: qsTr("l/s")
                                                     horizontalAlignment: Text.AlignLeft
                                                     verticalAlignment: Text.AlignVCenter
                                                 }
                                             }
                                         }
-                                        standardButtons: Dialog.Ok
+                                        standardButtons: Dialog.Ok | Dialog.Cancel
                                         onAccepted: {
-                                            qexpMoy=qexpMoy.toFixed(3)
-                                            tableModel1_venturie_tp5.setRow(indexqexpMoy, {Qexp:qexpMoy,DH:tableModel1_venturie_tp5.rows[indexqexpMoy].DH,Qtheo:tableModel1_venturie_tp5.rows[indexqexpMoy].Qtheo,Cd:tableModel1_venturie_tp5.rows[indexqexpMoy].Cd,})
-                                            if (indexqexpMoy==2) qexp1tableModel1_venturie_tp5=qexpMoy
-                                            if (indexqexpMoy==3) qexp2tableModel1_venturie_tp5=qexpMoy
-                                            if (indexqexpMoy==4) qexp3tableModel1_venturie_tp5=qexpMoy
+                                            tableModelQexp_tp5_a.calculQexpMoy_tp5();
+                                            qexpMoya=qexpMoya.toFixed(3)
+                                            tableModel1_venturie_tp5.setRow(indexqexpMoy, {Qexp:qexpMoya,DH:tableModel1_venturie_tp5.rows[indexqexpMoy].DH,Qtheo:tableModel1_venturie_tp5.rows[indexqexpMoy].Qtheo,Cd:tableModel1_venturie_tp5.rows[indexqexpMoy].Cd,})
+                                            if (indexqexpMoy==2) qexp1tableModel1_venturie_tp5=qexpMoya
+                                            if (indexqexpMoy==3) qexp2tableModel1_venturie_tp5=qexpMoyb
+                                            if (indexqexpMoy==4) qexp3tableModel1_venturie_tp5=qexpMoyc
                                             tableModel1_venturie_tp5.updatechart1_venturie_tp5();
                                             close()
                                         }
                                     }
+
+                                    Dialog {
+                                        id: tp_5_Dialog2_Venturie_b
+                                        title: "Flow rate measurement (Venturi)"
+                                        anchors.centerIn: Overlay.overlay
+                                        width:app.width
+                                        height: 450
+                                        Column {
+                                            width: parent.width
+                                            Row {
+                                                width: parent.width
+                                                spacing: 0
+                                                ToolSeparator {
+                                                    height: 25
+                                                    width: (parent.width-label3_Measured_tp5.width)/2
+                                                    orientation: Qt.Horizontal
+                                                }
+                                                Label {
+                                                    id:label3_Measured_tp5_b
+                                                    width: label3_Measured_tp5.text.width
+                                                    text: "With: Volumetric method"
+                                                    anchors.fill: parent.center
+                                                }
+
+                                                ToolSeparator {
+                                                    height: 25
+                                                    width: (parent.width-label3_Measured_tp5.width)/2
+                                                    orientation: Qt.Horizontal
+                                                }
+                                            }
+
+                                            Rectangle {
+                                                id:rectabview2_tp5_b
+                                                width: parent.width
+                                                height: 185
+                                                color: Material.dialogColor
+                                                TableView {
+                                                    id:tabview2_tp5_b
+                                                    anchors.fill: parent
+                                                    // columnSpacing: 1
+                                                    // rowSpacing: 1
+                                                    boundsBehavior: Flickable.StopAtBounds
+                                                    model: TableModel {
+                                                        id:tableModelQexp_tp5_b
+                                                        TableModelColumn { display: "Volume" }
+                                                        TableModelColumn { display: "Temps" }
+                                                        TableModelColumn { display: "Qexp" }
+                                                        function calculQexpMoy_tp5()
+                                                        {
+                                                            volume1bmodelQexp_tp5=tableModelQexp_tp5_b.rows[2].Volume
+                                                            temps1bmodelQexp_tp5=tableModelQexp_tp5_b.rows[2].Temps
+                                                            qexp1bmodelQexp_tp5=(volume1bmodelQexp_tp5/temps1bmodelQexp_tp5).toFixed(3)
+                                                            volume2bmodelQexp_tp5=tableModelQexp_tp5_b.rows[3].Volume
+                                                            temps2bmodelQexp_tp5=tableModelQexp_tp5_b.rows[3].Temps
+                                                            qexp2bmodelQexp_tp5=(volume2bmodelQexp_tp5/temps2bmodelQexp_tp5).toFixed(3)
+                                                            volume3bmodelQexp_tp5=tableModelQexp_tp5_b.rows[4].Volume
+                                                            temps3bmodelQexp_tp5=tableModelQexp_tp5_b.rows[4].Temps
+                                                            qexp3bmodelQexp_tp5=(volume3bmodelQexp_tp5/temps3bmodelQexp_tp5).toFixed(3)
+
+                                                            savesettings()
+                                                        }
+                                                        rows: [
+                                                            {
+                                                                Volume: "V",
+                                                                Temps: "t",
+                                                                Qexp: "Qexp",
+                                                            },
+                                                            {
+                                                                Volume: "(l)",
+                                                                Temps: "(s)",
+                                                                Qexp: "(l/s)",
+                                                            },
+                                                            {
+                                                                Volume: settings.volume1bmodelQexp_tp5,
+                                                                Temps: settings.temps1bmodelQexp_tp5,
+                                                                Qexp: settings.qexp1bmodelQexp_tp5,
+                                                            },
+                                                            {
+                                                                Volume: settings.volume2bmodelQexp_tp5,
+                                                                Temps: settings.temps2bmodelQexp_tp5,
+                                                                Qexp: settings.qexp2bmodelQexp_tp5,
+                                                            },
+                                                            {
+                                                                Volume: settings.volume3bmodelQexp_tp5,
+                                                                Temps: settings.temps3bmodelQexp_tp5,
+                                                                Qexp: settings.qexp3bmodelQexp_tp5,
+                                                            }
+                                                        ]
+                                                    }
+                                                    delegate:  TextInput {
+                                                        id:textItemQexp_tp5_b
+                                                        verticalAlignment: Text.AlignVCenter
+                                                        horizontalAlignment: Text.AlignHCenter
+                                                        inputMethodHints: Qt.ImhDigitsOnly
+                                                        text: model.display
+                                                        padding: 9
+                                                        ///wrapMode: Text.WordWrap
+                                                        selectByMouse: true
+                                                        renderType: Text.NativeRendering
+                                                        color: darkMode ? "white":""
+                                                        onTextEdited: {
+                                                            model.display = text
+                                                        }
+                                                        onAccepted:  {
+                                                            tableModelQexp_tp5_b.calculQexpMoy_tp5();
+                                                        }
+                                                        Rectangle {
+                                                            anchors.fill: parent
+                                                            height: textItemQexp_tp5_b.implicitHeight
+                                                            width: textItemQexp_tp5_b.implicitWidth
+                                                            ///width: parent.width/2
+                                                            color:"transparent"
+                                                            z: -1
+                                                            border.color: "steelblue"
+                                                        }
+
+                                                    }
+                                                }
+                                            }
+                                            Button {
+                                                width: parent.width
+                                                text: qsTr("Calcul Qexp")
+                                                onClicked: {
+                                                    tableModelQexp_tp5_b.calculQexpMoy_tp5();
+                                                }
+                                            }
+                                            Row {
+                                                width: parent.width
+                                                spacing: 2
+                                                Label {
+                                                    id:labeltextQexp_tp5_b
+                                                    width: text.width
+                                                    height: textQexp_tp5_b.height
+                                                    text: qsTr("QexpMoy=")
+                                                    horizontalAlignment: Text.AlignRight
+                                                    verticalAlignment: Text.AlignVCenter
+                                                }
+                                                TextField {
+                                                    id:textQexp_tp5_b
+                                                    width: parent.width-labeltextQexp_tp5_b.width-labeltextunitQexp_tp5_b.width-10
+                                                    placeholderText: qsTr("QexpMoy")
+                                                    ///enabled: false
+                                                    text: ((qexp1bmodelQexp_tp5+qexp2bmodelQexp_tp5+qexp3bmodelQexp_tp5)/3).toFixed(3)
+                                                    onTextChanged: qexpMoyb=textQexp_tp5_b.text
+                                                }
+                                                Label {
+                                                    id:labeltextunitQexp_tp5_b
+                                                    width: text.width
+                                                    height: textQexp_tp5_b.height
+                                                    text: qsTr("l/s")
+                                                    horizontalAlignment: Text.AlignLeft
+                                                    verticalAlignment: Text.AlignVCenter
+                                                }
+                                            }
+                                        }
+                                        standardButtons: Dialog.Ok | Dialog.Cancel
+                                        onAccepted: {
+                                            tableModelQexp_tp5_b.calculQexpMoy_tp5();
+                                            qexpMoyb=qexpMoyb.toFixed(3)
+                                            tableModel1_venturie_tp5.setRow(indexqexpMoy, {Qexp:qexpMoyb,DH:tableModel1_venturie_tp5.rows[indexqexpMoy].DH,Qtheo:tableModel1_venturie_tp5.rows[indexqexpMoy].Qtheo,Cd:tableModel1_venturie_tp5.rows[indexqexpMoy].Cd,})
+                                            if (indexqexpMoy==2) qexp1tableModel1_venturie_tp5=qexpMoya
+                                            if (indexqexpMoy==3) qexp2tableModel1_venturie_tp5=qexpMoyb
+                                            if (indexqexpMoy==4) qexp3tableModel1_venturie_tp5=qexpMoyc
+                                            tableModel1_venturie_tp5.updatechart1_venturie_tp5();
+                                            close()
+                                        }
+                                    }
+
+                                    Dialog {
+                                        id: tp_5_Dialog2_Venturie_c
+                                        title: "Flow rate measurement (Venturi)"
+                                        anchors.centerIn: Overlay.overlay
+                                        width:app.width
+                                        height: 450
+                                        Column {
+                                            width: parent.width
+                                            Row {
+                                                width: parent.width
+                                                spacing: 0
+                                                ToolSeparator {
+                                                    height: 25
+                                                    width: (parent.width-label3_Measured_tp5.width)/2
+                                                    orientation: Qt.Horizontal
+                                                }
+                                                Label {
+                                                    id:label3_Measured_tp5_c
+                                                    width: label3_Measured_tp5.text.width
+                                                    text: "With: Volumetric method"
+                                                    anchors.fill: parent.center
+                                                }
+
+                                                ToolSeparator {
+                                                    height: 25
+                                                    width: (parent.width-label3_Measured_tp5.width)/2
+                                                    orientation: Qt.Horizontal
+                                                }
+                                            }
+
+                                            Rectangle {
+                                                id:rectabview2_tp5_c
+                                                width: parent.width
+                                                height: 185
+                                                color: Material.dialogColor
+                                                TableView {
+                                                    id:tabview2_tp5_c
+                                                    anchors.fill: parent
+                                                    // columnSpacing: 1
+                                                    // rowSpacing: 1
+                                                    boundsBehavior: Flickable.StopAtBounds
+                                                    model: TableModel {
+                                                        id:tableModelQexp_tp5_c
+                                                        TableModelColumn { display: "Volume" }
+                                                        TableModelColumn { display: "Temps" }
+                                                        TableModelColumn { display: "Qexp" }
+                                                        function calculQexpMoy_tp5()
+                                                        {
+                                                            volume1cmodelQexp_tp5=tableModelQexp_tp5_c.rows[2].Volume
+                                                            temps1cmodelQexp_tp5=tableModelQexp_tp5_c.rows[2].Temps
+                                                            qexp1cmodelQexp_tp5=(volume1cmodelQexp_tp5/temps1cmodelQexp_tp5).toFixed(3)
+                                                            volume2cmodelQexp_tp5=tableModelQexp_tp5_c.rows[3].Volume
+                                                            temps2cmodelQexp_tp5=tableModelQexp_tp5_c.rows[3].Temps
+                                                            qexp2cmodelQexp_tp5=(volume2cmodelQexp_tp5/temps2cmodelQexp_tp5).toFixed(3)
+                                                            volume3cmodelQexp_tp5=tableModelQexp_tp5_c.rows[4].Volume
+                                                            temps3cmodelQexp_tp5=tableModelQexp_tp5_c.rows[4].Temps
+                                                            qexp3cmodelQexp_tp5=(volume3cmodelQexp_tp5/temps3cmodelQexp_tp5).toFixed(3)
+
+                                                            savesettings()
+                                                        }
+                                                        rows: [
+                                                            {
+                                                                Volume: "V",
+                                                                Temps: "t",
+                                                                Qexp: "Qexp",
+                                                            },
+                                                            {
+                                                                Volume: "(l)",
+                                                                Temps: "(s)",
+                                                                Qexp: "(l/s)",
+                                                            },
+                                                            {
+                                                                Volume: settings.volume1cmodelQexp_tp5,
+                                                                Temps: settings.temps1cmodelQexp_tp5,
+                                                                Qexp: settings.qexp1cmodelQexp_tp5,
+                                                            },
+                                                            {
+                                                                Volume: settings.volume2cmodelQexp_tp5,
+                                                                Temps: settings.temps2cmodelQexp_tp5,
+                                                                Qexp: settings.qexp2cmodelQexp_tp5,
+                                                            },
+                                                            {
+                                                                Volume: settings.volume3cmodelQexp_tp5,
+                                                                Temps: settings.temps3cmodelQexp_tp5,
+                                                                Qexp: settings.qexp3cmodelQexp_tp5,
+                                                            }
+                                                        ]
+                                                    }
+                                                    delegate:  TextInput {
+                                                        id:textItemQexp_tp5_c
+                                                        verticalAlignment: Text.AlignVCenter
+                                                        horizontalAlignment: Text.AlignHCenter
+                                                        inputMethodHints: Qt.ImhDigitsOnly
+                                                        text: model.display
+                                                        padding: 9
+                                                        ///wrapMode: Text.WordWrap
+                                                        selectByMouse: true
+                                                        renderType: Text.NativeRendering
+                                                        color: darkMode ? "white":""
+                                                        onTextEdited: {
+                                                            model.display = text
+                                                        }
+                                                        onAccepted:  {
+                                                            tableModelQexp_tp5_c.calculQexpMoy_tp5();
+                                                        }
+                                                        Rectangle {
+                                                            anchors.fill: parent
+                                                            height: textItemQexp_tp5_c.implicitHeight
+                                                            width: textItemQexp_tp5_c.implicitWidth
+                                                            ///width: parent.width/2
+                                                            color:"transparent"
+                                                            z: -1
+                                                            border.color: "steelblue"
+                                                        }
+
+                                                    }
+                                                }
+                                            }
+                                            Button {
+                                                width: parent.width
+                                                text: qsTr("Calcul Qexp")
+                                                onClicked: {
+                                                    tableModelQexp_tp5_c.calculQexpMoy_tp5();
+                                                }
+                                            }
+                                            Row {
+                                                width: parent.width
+                                                spacing: 2
+                                                Label {
+                                                    id:labeltextQexp_tp5_c
+                                                    width: text.width
+                                                    height: textQexp_tp5_c.height
+                                                    text: qsTr("QexpMoy=")
+                                                    horizontalAlignment: Text.AlignRight
+                                                    verticalAlignment: Text.AlignVCenter
+                                                }
+                                                TextField {
+                                                    id:textQexp_tp5_c
+                                                    width: parent.width-labeltextQexp_tp5_c.width-labeltextunitQexp_tp5_c.width-10
+                                                    placeholderText: qsTr("QexpMoy")
+                                                    ///enabled: false
+                                                    text: ((qexp1cmodelQexp_tp5+qexp2cmodelQexp_tp5+qexp3cmodelQexp_tp5)/3).toFixed(3)
+                                                    onTextChanged: qexpMoyc=textQexp_tp5_c.text
+                                                }
+                                                Label {
+                                                    id:labeltextunitQexp_tp5_c
+                                                    width: text.width
+                                                    height: textQexp_tp5_c.height
+                                                    text: qsTr("l/s")
+                                                    horizontalAlignment: Text.AlignLeft
+                                                    verticalAlignment: Text.AlignVCenter
+                                                }
+                                            }
+                                        }
+                                        standardButtons: Dialog.Ok | Dialog.Cancel
+                                        onAccepted: {
+                                            tableModelQexp_tp5_c.calculQexpMoy_tp5();
+                                            qexpMoyc=qexpMoyc.toFixed(3)
+                                            tableModel1_venturie_tp5.setRow(indexqexpMoy, {Qexp:qexpMoyc,DH:tableModel1_venturie_tp5.rows[indexqexpMoy].DH,Qtheo:tableModel1_venturie_tp5.rows[indexqexpMoy].Qtheo,Cd:tableModel1_venturie_tp5.rows[indexqexpMoy].Cd,})
+                                            if (indexqexpMoy==2) qexp1tableModel1_venturie_tp5=qexpMoya
+                                            if (indexqexpMoy==3) qexp2tableModel1_venturie_tp5=qexpMoyb
+                                            if (indexqexpMoy==4) qexp3tableModel1_venturie_tp5=qexpMoyc
+                                            tableModel1_venturie_tp5.updatechart1_venturie_tp5();
+                                            close()
+                                        }
+                                    }
+
+
                                 }
                             }
 
@@ -942,9 +1282,11 @@ Rectangle {
                                                 width: 50
                                                 text: model.display
                                                 onClicked:{
-                                                    tp5_Dialog2_Diaphra.open()
-                                                    ///console.log("clicked"+tableModel1_Diaphra_tp5.rows[index].DH+":"+index)
+                                                    console.log("clicked"+tableModel1_Diaphra_tp5.rows[index].DH+":"+index)
                                                     indexqexpMoy_Diaphra=index
+                                                    if (indexqexpMoy_Diaphra===0) {tp5_Dialog2_Diaphra_a.open()}
+                                                    if (indexqexpMoy_Diaphra===1) {tp5_Dialog2_Diaphra_b.open()}
+                                                    if (indexqexpMoy_Diaphra===2) {tp5_Dialog2_Diaphra_c.open()}
                                                 }
                                                 onTextChanged: {
                                                     qexp1tableModel1_Diaphra_tp5=tableModel1_Diaphra_tp5.rows[0].Qexp
@@ -1034,8 +1376,10 @@ Rectangle {
                                             }
                                         }
                                     }
+///-haf 29-11-2025
+
                                     Dialog {
-                                        id: tp5_Dialog2_Diaphra
+                                        id: tp5_Dialog2_Diaphra_a
                                         title: "Flow rate measurement (Orifice)"
                                         anchors.centerIn: Overlay.overlay
                                         width:app.width
@@ -1047,50 +1391,50 @@ Rectangle {
                                                 spacing: 0
                                                 ToolSeparator {
                                                     height: 25
-                                                    width: (parent.width-label3_Measured_Diaphra_tp5.width)/2
+                                                    width: (parent.width-label3_Measured_Diaphra_tp5_a.width)/2
                                                     orientation: Qt.Horizontal
                                                 }
                                                 Label {
-                                                    id:label3_Measured_Diaphra_tp5
-                                                    width: label3_Measured_Diaphra_tp5.text.width
+                                                    id:label3_Measured_Diaphra_tp5_a
+                                                    width: label3_Measured_Diaphra_tp5_a.text.width
                                                     text: "With: Volumetric method"
                                                     anchors.fill: parent.center
                                                 }
 
                                                 ToolSeparator {
                                                     height: 25
-                                                    width: (parent.width-label3_Measured_Diaphra_tp5.width)/2
+                                                    width: (parent.width-label3_Measured_Diaphra_tp5_a.width)/2
                                                     orientation: Qt.Horizontal
                                                 }
                                             }
 
                                             Rectangle {
-                                                id:rectabview2_Diaphra_tp5
+                                                id:rectabview2_Diaphra_tp5_a
                                                 width: parent.width
                                                 height: 185
                                                 color: Material.dialogColor
                                                 TableView {
-                                                    id:tabview2_Diaphra_tp5
+                                                    id:tabview2_Diaphra_tp5_a
                                                     anchors.fill: parent
                                                     // columnSpacing: 1
                                                     // rowSpacing: 1
                                                     boundsBehavior: Flickable.StopAtBounds
                                                     model: TableModel {
-                                                        id:tableModelQexp_Diaphra_tp5
+                                                        id:tableModelQexp_Diaphra_tp5_a
                                                         TableModelColumn { display: "Volume" }
                                                         TableModelColumn { display: "Temps" }
                                                         TableModelColumn { display: "Qexp" }
                                                         function calculQexpMoy_Diaphra_tp5()
                                                         {
-                                                            volume1modelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5.rows[2].Volume
-                                                            temps1modelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5.rows[2].Temps
-                                                            qexp1modelQexp_Diaphra_tp5=(volume1modelQexp_Diaphra_tp5/temps1modelQexp_Diaphra_tp5).toFixed(3)
-                                                            volume2modelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5.rows[3].Volume
-                                                            temps2modelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5.rows[3].Temps
-                                                            qexp2modelQexp_Diaphra_tp5=(volume2modelQexp_Diaphra_tp5/temps2modelQexp_Diaphra_tp5).toFixed(3)
-                                                            volume3modelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5.rows[4].Volume
-                                                            temps3modelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5.rows[4].Temps
-                                                            qexp3modelQexp_Diaphra_tp5=(volume3modelQexp_Diaphra_tp5/temps3modelQexp_Diaphra_tp5).toFixed(3)
+                                                            volume1amodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_a.rows[2].Volume
+                                                            temps1amodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_a.rows[2].Temps
+                                                            qexp1amodelQexp_Diaphra_tp5=(volume1amodelQexp_Diaphra_tp5/temps1amodelQexp_Diaphra_tp5).toFixed(3)
+                                                            volume2amodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_a.rows[3].Volume
+                                                            temps2amodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_a.rows[3].Temps
+                                                            qexp2amodelQexp_Diaphra_tp5=(volume2amodelQexp_Diaphra_tp5/temps2amodelQexp_Diaphra_tp5).toFixed(3)
+                                                            volume3amodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_a.rows[4].Volume
+                                                            temps3amodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_a.rows[4].Temps
+                                                            qexp3amodelQexp_Diaphra_tp5=(volume3amodelQexp_Diaphra_tp5/temps3amodelQexp_Diaphra_tp5).toFixed(3)
 
                                                             savesettings()
                                                         }
@@ -1106,24 +1450,24 @@ Rectangle {
                                                                 Qexp: "(l/s)",
                                                             },
                                                             {
-                                                                Volume: settings.volume1modelQexp_Diaphra_tp5,
-                                                                Temps: settings.temps1modelQexp_Diaphra_tp5,
-                                                                Qexp: settings.qexp1modelQexp_Diaphra_tp5,
+                                                                Volume: settings.volume1amodelQexp_Diaphra_tp5,
+                                                                Temps: settings.temps1amodelQexp_Diaphra_tp5,
+                                                                Qexp: settings.qexp1amodelQexp_Diaphra_tp5,
                                                             },
                                                             {
-                                                                Volume: settings.volume2modelQexp_Diaphra_tp5,
-                                                                Temps: settings.temps2modelQexp_Diaphra_tp5,
-                                                                Qexp: settings.qexp2modelQexp_Diaphra_tp5,
+                                                                Volume: settings.volume2amodelQexp_Diaphra_tp5,
+                                                                Temps: settings.temps2amodelQexp_Diaphra_tp5,
+                                                                Qexp: settings.qexp2amodelQexp_Diaphra_tp5,
                                                             },
                                                             {
-                                                                Volume: settings.volume3modelQexp_Diaphra_tp5,
-                                                                Temps: settings.temps3modelQexp_Diaphra_tp5,
-                                                                Qexp: settings.qexp3modelQexp_Diaphra_tp5,
+                                                                Volume: settings.volume3amodelQexp_Diaphra_tp5,
+                                                                Temps: settings.temps3amodelQexp_Diaphra_tp5,
+                                                                Qexp: settings.qexp3amodelQexp_Diaphra_tp5,
                                                             }
                                                         ]
                                                     }
                                                     delegate:  TextInput {
-                                                        id:textItemQexp_Diaphra_tp5
+                                                        id:textItemQexp_Diaphra_tp5_a
                                                         verticalAlignment: Text.AlignVCenter
                                                         horizontalAlignment: Text.AlignHCenter
                                                         inputMethodHints: Qt.ImhDigitsOnly
@@ -1137,12 +1481,12 @@ Rectangle {
                                                             model.display = text
                                                         }
                                                         onAccepted:  {
-                                                            tableModelQexp_Diaphra_tp5.calculQexpMoy_Diaphra_tp5();
+                                                            tableModelQexp_Diaphra_tp5_a.calculQexpMoy_Diaphra_tp5();
                                                         }
                                                         Rectangle {
                                                             anchors.fill: parent
-                                                            height: textItemQexp_Diaphra_tp5.implicitHeight
-                                                            width: textItemQexp_Diaphra_tp5.implicitWidth
+                                                            height: textItemQexp_Diaphra_tp5_a.implicitHeight
+                                                            width: textItemQexp_Diaphra_tp5_a.implicitWidth
                                                             ///width: parent.width/2
                                                             color:"transparent"
                                                             z: -1
@@ -1156,49 +1500,386 @@ Rectangle {
                                                 width: parent.width
                                                 text: qsTr("Calcul Qexp")
                                                 onClicked: {
-                                                    tableModelQexp_Diaphra_tp5.calculQexpMoy_Diaphra_tp5();
+                                                    tableModelQexp_Diaphra_tp5_a.calculQexpMoy_Diaphra_tp5();
                                                 }
                                             }
                                             Row {
                                                 width: parent.width
                                                 spacing: 2
                                                 Label {
-                                                    id:labeltextQexp_Diaphra_tp5
+                                                    id:labeltextQexp_Diaphra_tp5_a
                                                     width: text.width
-                                                    height: textQexp_Diaphra_tp5.height
+                                                    height: textQexp_Diaphra_tp5_a.height
                                                     text: qsTr("QexpMoy=")
                                                     horizontalAlignment: Text.AlignRight
                                                     verticalAlignment: Text.AlignVCenter
                                                 }
                                                 TextField {
-                                                    id:textQexp_Diaphra_tp5
-                                                    width: parent.width-labeltextQexp_Diaphra_tp5.width-labeltextunitQexp_Diaphra_tp5.width-10
+                                                    id:textQexp_Diaphra_tp5_a
+                                                    width: parent.width-labeltextQexp_Diaphra_tp5_a.width-labeltextunitQexp_Diaphra_tp5_a.width-10
                                                     placeholderText: qsTr("QexpMoy")
                                                     ///enabled: false
-                                                    text: ((qexp1modelQexp_Diaphra_tp5+qexp2modelQexp_Diaphra_tp5+qexp3modelQexp_Diaphra_tp5)/3).toFixed(3)
-                                                    onTextChanged: qexpMoy_Diaphra=textQexp_Diaphra_tp5.text
+                                                    text: ((qexp1amodelQexp_Diaphra_tp5+qexp2amodelQexp_Diaphra_tp5+qexp3amodelQexp_Diaphra_tp5)/3).toFixed(3)
+                                                    onTextChanged: qexpaMoy_Diaphra=textQexp_Diaphra_tp5_a.text
                                                 }
                                                 Label {
-                                                    id:labeltextunitQexp_Diaphra_tp5
+                                                    id:labeltextunitQexp_Diaphra_tp5_a
                                                     width: text.width
-                                                    height: textQexp_Diaphra_tp5.height
+                                                    height: textQexp_Diaphra_tp5_a.height
                                                     text: qsTr("l/s")
                                                     horizontalAlignment: Text.AlignLeft
                                                     verticalAlignment: Text.AlignVCenter
                                                 }
                                             }
                                         }
-                                        standardButtons: Dialog.Ok
+                                        standardButtons: Dialog.Ok | Dialog.Cancel
                                         onAccepted: {
-                                            qexpMoy_Diaphra=qexpMoy_Diaphra.toFixed(3)
-                                            tableModel1_Diaphra_tp5.setRow(indexqexpMoy_Diaphra, {Qexp:qexpMoy_Diaphra,DH:tableModel1_Diaphra_tp5.rows[indexqexpMoy_Diaphra].DH,Qtheo:tableModel1_Diaphra_tp5.rows[indexqexpMoy_Diaphra].Qtheo,Cd:tableModel1_Diaphra_tp5.rows[indexqexpMoy_Diaphra].Cd,})
-                                            if (indexqexpMoy_Diaphra==2) qexp1tableModel1_Diaphra_tp5=qexpMoy_Diaphra
-                                            if (indexqexpMoy_Diaphra==3) qexp2tableModel1_Diaphra_tp5=qexpMoy_Diaphra
-                                            if (indexqexpMoy_Diaphra==4) qexp3tableModel1_Diaphra_tp5=qexpMoy_Diaphra
+                                            tableModelQexp_Diaphra_tp5_a.calculQexpMoy_Diaphra_tp5();
+                                            qexpaMoy_Diaphra=qexpaMoy_Diaphra.toFixed(3)
+                                            tableModel1_Diaphra_tp5.setRow(indexqexpMoy_Diaphra, {Qexp:qexpaMoy_Diaphra,DH:tableModel1_Diaphra_tp5.rows[indexqexpMoy_Diaphra].DH,Qtheo:tableModel1_Diaphra_tp5.rows[indexqexpMoy_Diaphra].Qtheo,Cd:tableModel1_Diaphra_tp5.rows[indexqexpMoy_Diaphra].Cd,})
+                                            if (indexqexpMoy_Diaphra==2) qexp1tableModel1_Diaphra_tp5=qexpaMoy_Diaphra
+                                            if (indexqexpMoy_Diaphra==3) qexp2tableModel1_Diaphra_tp5=qexpbMoy_Diaphra
+                                            if (indexqexpMoy_Diaphra==4) qexp3tableModel1_Diaphra_tp5=qexpcMoy_Diaphra
                                             tableModel1_Diaphra_tp5.updatechart1_Diaphra_tp5();
                                             close()
                                         }
                                     }
+
+                                    Dialog {
+                                        id: tp5_Dialog2_Diaphra_b
+                                        title: "Flow rate measurement (Orifice)"
+                                        anchors.centerIn: Overlay.overlay
+                                        width:app.width
+                                        height: 450
+                                        Column {
+                                            width: parent.width
+                                            Row {
+                                                width: parent.width
+                                                spacing: 0
+                                                ToolSeparator {
+                                                    height: 25
+                                                    width: (parent.width-label3_Measured_Diaphra_tp5_b.width)/2
+                                                    orientation: Qt.Horizontal
+                                                }
+                                                Label {
+                                                    id:label3_Measured_Diaphra_tp5_b
+                                                    width: label3_Measured_Diaphra_tp5_b.text.width
+                                                    text: "With: Volumetric method"
+                                                    anchors.fill: parent.center
+                                                }
+
+                                                ToolSeparator {
+                                                    height: 25
+                                                    width: (parent.width-label3_Measured_Diaphra_tp5_b.width)/2
+                                                    orientation: Qt.Horizontal
+                                                }
+                                            }
+
+                                            Rectangle {
+                                                id:rectabview2_Diaphra_tp5_b
+                                                width: parent.width
+                                                height: 185
+                                                color: Material.dialogColor
+                                                TableView {
+                                                    id:tabview2_Diaphra_tp5_b
+                                                    anchors.fill: parent
+                                                    // columnSpacing: 1
+                                                    // rowSpacing: 1
+                                                    boundsBehavior: Flickable.StopAtBounds
+                                                    model: TableModel {
+                                                        id:tableModelQexp_Diaphra_tp5_b
+                                                        TableModelColumn { display: "Volume" }
+                                                        TableModelColumn { display: "Temps" }
+                                                        TableModelColumn { display: "Qexp" }
+                                                        function calculQexpMoy_Diaphra_tp5()
+                                                        {
+                                                            volume1bmodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_b.rows[2].Volume
+                                                            temps1bmodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_b.rows[2].Temps
+                                                            qexp1bmodelQexp_Diaphra_tp5=(volume1bmodelQexp_Diaphra_tp5/temps1bmodelQexp_Diaphra_tp5).toFixed(3)
+                                                            volume2bmodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_b.rows[3].Volume
+                                                            temps2bmodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_b.rows[3].Temps
+                                                            qexp2bmodelQexp_Diaphra_tp5=(volume2bmodelQexp_Diaphra_tp5/temps2bmodelQexp_Diaphra_tp5).toFixed(3)
+                                                            volume3bmodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_b.rows[4].Volume
+                                                            temps3bmodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_b.rows[4].Temps
+                                                            qexp3bmodelQexp_Diaphra_tp5=(volume3bmodelQexp_Diaphra_tp5/temps3bmodelQexp_Diaphra_tp5).toFixed(3)
+
+                                                            savesettings()
+                                                        }
+                                                        rows: [
+                                                            {
+                                                                Volume: "V",
+                                                                Temps: "t",
+                                                                Qexp: "Qexp",
+                                                            },
+                                                            {
+                                                                Volume: "(l)",
+                                                                Temps: "(s)",
+                                                                Qexp: "(l/s)",
+                                                            },
+                                                            {
+                                                                Volume: settings.volume1bmodelQexp_Diaphra_tp5,
+                                                                Temps: settings.temps1bmodelQexp_Diaphra_tp5,
+                                                                Qexp: settings.qexp1bmodelQexp_Diaphra_tp5,
+                                                            },
+                                                            {
+                                                                Volume: settings.volume2bmodelQexp_Diaphra_tp5,
+                                                                Temps: settings.temps2bmodelQexp_Diaphra_tp5,
+                                                                Qexp: settings.qexp2bmodelQexp_Diaphra_tp5,
+                                                            },
+                                                            {
+                                                                Volume: settings.volume3bmodelQexp_Diaphra_tp5,
+                                                                Temps: settings.temps3bmodelQexp_Diaphra_tp5,
+                                                                Qexp: settings.qexp3bmodelQexp_Diaphra_tp5,
+                                                            }
+                                                        ]
+                                                    }
+                                                    delegate:  TextInput {
+                                                        id:textItemQexp_Diaphra_tp5_b
+                                                        verticalAlignment: Text.AlignVCenter
+                                                        horizontalAlignment: Text.AlignHCenter
+                                                        inputMethodHints: Qt.ImhDigitsOnly
+                                                        text: model.display
+                                                        padding: 9
+                                                        ///wrapMode: Text.WordWrap
+                                                        selectByMouse: true
+                                                        renderType: Text.NativeRendering
+                                                        color: darkMode ? "white":""
+                                                        onTextEdited: {
+                                                            model.display = text
+                                                        }
+                                                        onAccepted:  {
+                                                            tableModelQexp_Diaphra_tp5_b.calculQexpMoy_Diaphra_tp5();
+                                                        }
+                                                        Rectangle {
+                                                            anchors.fill: parent
+                                                            height: textItemQexp_Diaphra_tp5_b.implicitHeight
+                                                            width: textItemQexp_Diaphra_tp5_b.implicitWidth
+                                                            ///width: parent.width/2
+                                                            color:"transparent"
+                                                            z: -1
+                                                            border.color: "steelblue"
+                                                        }
+
+                                                    }
+                                                }
+                                            }
+                                            Button {
+                                                width: parent.width
+                                                text: qsTr("Calcul Qexp")
+                                                onClicked: {
+                                                    tableModelQexp_Diaphra_tp5_b.calculQexpMoy_Diaphra_tp5();
+                                                }
+                                            }
+                                            Row {
+                                                width: parent.width
+                                                spacing: 2
+                                                Label {
+                                                    id:labeltextQexp_Diaphra_tp5_b
+                                                    width: text.width
+                                                    height: textQexp_Diaphra_tp5_b.height
+                                                    text: qsTr("QexpMoy=")
+                                                    horizontalAlignment: Text.AlignRight
+                                                    verticalAlignment: Text.AlignVCenter
+                                                }
+                                                TextField {
+                                                    id:textQexp_Diaphra_tp5_b
+                                                    width: parent.width-labeltextQexp_Diaphra_tp5_b.width-labeltextunitQexp_Diaphra_tp5_b.width-10
+                                                    placeholderText: qsTr("QexpMoy")
+                                                    ///enabled: false
+                                                    text: ((qexp1bmodelQexp_Diaphra_tp5+qexp2bmodelQexp_Diaphra_tp5+qexp3bmodelQexp_Diaphra_tp5)/3).toFixed(3)
+                                                    onTextChanged: qexpbMoy_Diaphra=textQexp_Diaphra_tp5_b.text
+                                                }
+                                                Label {
+                                                    id:labeltextunitQexp_Diaphra_tp5_b
+                                                    width: text.width
+                                                    height: textQexp_Diaphra_tp5_b.height
+                                                    text: qsTr("l/s")
+                                                    horizontalAlignment: Text.AlignLeft
+                                                    verticalAlignment: Text.AlignVCenter
+                                                }
+                                            }
+                                        }
+                                        standardButtons: Dialog.Ok| Dialog.Cancel
+                                        onAccepted: {
+                                            tableModelQexp_Diaphra_tp5_b.calculQexpMoy_Diaphra_tp5();
+                                            qexpbMoy_Diaphra=qexpbMoy_Diaphra.toFixed(3)
+                                            tableModel1_Diaphra_tp5.setRow(indexqexpMoy_Diaphra, {Qexp:qexpbMoy_Diaphra,DH:tableModel1_Diaphra_tp5.rows[indexqexpMoy_Diaphra].DH,Qtheo:tableModel1_Diaphra_tp5.rows[indexqexpMoy_Diaphra].Qtheo,Cd:tableModel1_Diaphra_tp5.rows[indexqexpMoy_Diaphra].Cd,})
+                                            if (indexqexpMoy_Diaphra==2) qexp1tableModel1_Diaphra_tp5=qexpaMoy_Diaphra
+                                            if (indexqexpMoy_Diaphra==3) qexp2tableModel1_Diaphra_tp5=qexpbMoy_Diaphra
+                                            if (indexqexpMoy_Diaphra==4) qexp3tableModel1_Diaphra_tp5=qexpcMoy_Diaphra
+                                            tableModel1_Diaphra_tp5.updatechart1_Diaphra_tp5();
+                                            close()
+                                        }
+                                    }
+
+                                    Dialog {
+                                        id: tp5_Dialog2_Diaphra_c
+                                        title: "Flow rate measurement (Orifice)"
+                                        anchors.centerIn: Overlay.overlay
+                                        width:app.width
+                                        height: 450
+                                        Column {
+                                            width: parent.width
+                                            Row {
+                                                width: parent.width
+                                                spacing: 0
+                                                ToolSeparator {
+                                                    height: 25
+                                                    width: (parent.width-label3_Measured_Diaphra_tp5_c.width)/2
+                                                    orientation: Qt.Horizontal
+                                                }
+                                                Label {
+                                                    id:label3_Measured_Diaphra_tp5_c
+                                                    width: label3_Measured_Diaphra_tp5_c.text.width
+                                                    text: "With: Volumetric method"
+                                                    anchors.fill: parent.center
+                                                }
+
+                                                ToolSeparator {
+                                                    height: 25
+                                                    width: (parent.width-label3_Measured_Diaphra_tp5_c.width)/2
+                                                    orientation: Qt.Horizontal
+                                                }
+                                            }
+
+                                            Rectangle {
+                                                id:rectabview2_Diaphra_tp5_c
+                                                width: parent.width
+                                                height: 185
+                                                color: Material.dialogColor
+                                                TableView {
+                                                    id:tabview2_Diaphra_tp5_c
+                                                    anchors.fill: parent
+                                                    // columnSpacing: 1
+                                                    // rowSpacing: 1
+                                                    boundsBehavior: Flickable.StopAtBounds
+                                                    model: TableModel {
+                                                        id:tableModelQexp_Diaphra_tp5_c
+                                                        TableModelColumn { display: "Volume" }
+                                                        TableModelColumn { display: "Temps" }
+                                                        TableModelColumn { display: "Qexp" }
+                                                        function calculQexpMoy_Diaphra_tp5()
+                                                        {
+                                                            volume1cmodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_c.rows[2].Volume
+                                                            temps1cmodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_c.rows[2].Temps
+                                                            qexp1cmodelQexp_Diaphra_tp5=(volume1cmodelQexp_Diaphra_tp5/temps1cmodelQexp_Diaphra_tp5).toFixed(3)
+                                                            volume2cmodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_c.rows[3].Volume
+                                                            temps2cmodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_c.rows[3].Temps
+                                                            qexp2cmodelQexp_Diaphra_tp5=(volume2cmodelQexp_Diaphra_tp5/temps2cmodelQexp_Diaphra_tp5).toFixed(3)
+                                                            volume3cmodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_c.rows[4].Volume
+                                                            temps3cmodelQexp_Diaphra_tp5=tableModelQexp_Diaphra_tp5_c.rows[4].Temps
+                                                            qexp3cmodelQexp_Diaphra_tp5=(volume3cmodelQexp_Diaphra_tp5/temps3cmodelQexp_Diaphra_tp5).toFixed(3)
+
+                                                            savesettings()
+                                                        }
+                                                        rows: [
+                                                            {
+                                                                Volume: "V",
+                                                                Temps: "t",
+                                                                Qexp: "Qexp",
+                                                            },
+                                                            {
+                                                                Volume: "(l)",
+                                                                Temps: "(s)",
+                                                                Qexp: "(l/s)",
+                                                            },
+                                                            {
+                                                                Volume: settings.volume1cmodelQexp_Diaphra_tp5,
+                                                                Temps: settings.temps1cmodelQexp_Diaphra_tp5,
+                                                                Qexp: settings.qexp1cmodelQexp_Diaphra_tp5,
+                                                            },
+                                                            {
+                                                                Volume: settings.volume2cmodelQexp_Diaphra_tp5,
+                                                                Temps: settings.temps2cmodelQexp_Diaphra_tp5,
+                                                                Qexp: settings.qexp2cmodelQexp_Diaphra_tp5,
+                                                            },
+                                                            {
+                                                                Volume: settings.volume3cmodelQexp_Diaphra_tp5,
+                                                                Temps: settings.temps3cmodelQexp_Diaphra_tp5,
+                                                                Qexp: settings.qexp3cmodelQexp_Diaphra_tp5,
+                                                            }
+                                                        ]
+                                                    }
+                                                    delegate:  TextInput {
+                                                        id:textItemQexp_Diaphra_tp5_c
+                                                        verticalAlignment: Text.AlignVCenter
+                                                        horizontalAlignment: Text.AlignHCenter
+                                                        inputMethodHints: Qt.ImhDigitsOnly
+                                                        text: model.display
+                                                        padding: 9
+                                                        ///wrapMode: Text.WordWrap
+                                                        selectByMouse: true
+                                                        renderType: Text.NativeRendering
+                                                        color: darkMode ? "white":""
+                                                        onTextEdited: {
+                                                            model.display = text
+                                                        }
+                                                        onAccepted:  {
+                                                            tableModelQexp_Diaphra_tp5_c.calculQexpMoy_Diaphra_tp5();
+                                                        }
+                                                        Rectangle {
+                                                            anchors.fill: parent
+                                                            height: textItemQexp_Diaphra_tp5_c.implicitHeight
+                                                            width: textItemQexp_Diaphra_tp5_c.implicitWidth
+                                                            ///width: parent.width/2
+                                                            color:"transparent"
+                                                            z: -1
+                                                            border.color: "steelblue"
+                                                        }
+
+                                                    }
+                                                }
+                                            }
+                                            Button {
+                                                width: parent.width
+                                                text: qsTr("Calcul Qexp")
+                                                onClicked: {
+                                                    tableModelQexp_Diaphra_tp5_c.calculQexpMoy_Diaphra_tp5();
+                                                }
+                                            }
+                                            Row {
+                                                width: parent.width
+                                                spacing: 2
+                                                Label {
+                                                    id:labeltextQexp_Diaphra_tp5_c
+                                                    width: text.width
+                                                    height: textQexp_Diaphra_tp5_c.height
+                                                    text: qsTr("QexpMoy=")
+                                                    horizontalAlignment: Text.AlignRight
+                                                    verticalAlignment: Text.AlignVCenter
+                                                }
+                                                TextField {
+                                                    id:textQexp_Diaphra_tp5_c
+                                                    width: parent.width-labeltextQexp_Diaphra_tp5_c.width-labeltextunitQexp_Diaphra_tp5_c.width-10
+                                                    placeholderText: qsTr("QexpMoy")
+                                                    ///enabled: false
+                                                    text: ((qexp1cmodelQexp_Diaphra_tp5+qexp2cmodelQexp_Diaphra_tp5+qexp3cmodelQexp_Diaphra_tp5)/3).toFixed(3)
+                                                    onTextChanged: qexpcMoy_Diaphra=textQexp_Diaphra_tp5_c.text
+                                                }
+                                                Label {
+                                                    id:labeltextunitQexp_Diaphra_tp5_c
+                                                    width: text.width
+                                                    height: textQexp_Diaphra_tp5_c.height
+                                                    text: qsTr("l/s")
+                                                    horizontalAlignment: Text.AlignLeft
+                                                    verticalAlignment: Text.AlignVCenter
+                                                }
+                                            }
+                                        }
+                                        standardButtons: Dialog.Ok| Dialog.Cancel
+                                        onAccepted: {
+                                            tableModelQexp_Diaphra_tp5_c.calculQexpMoy_Diaphra_tp5();
+                                            qexpcMoy_Diaphra=qexpcMoy_Diaphra.toFixed(3)
+                                            tableModel1_Diaphra_tp5.setRow(indexqexpMoy_Diaphra, {Qexp:qexpcMoy_Diaphra,DH:tableModel1_Diaphra_tp5.rows[indexqexpMoy_Diaphra].DH,Qtheo:tableModel1_Diaphra_tp5.rows[indexqexpMoy_Diaphra].Qtheo,Cd:tableModel1_Diaphra_tp5.rows[indexqexpMoy_Diaphra].Cd,})
+                                            if (indexqexpMoy_Diaphra==2) qexp1tableModel1_Diaphra_tp5=qexpaMoy_Diaphra
+                                            if (indexqexpMoy_Diaphra==3) qexp2tableModel1_Diaphra_tp5=qexpbMoy_Diaphra
+                                            if (indexqexpMoy_Diaphra==4) qexp3tableModel1_Diaphra_tp5=qexpcMoy_Diaphra
+                                            tableModel1_Diaphra_tp5.updatechart1_Diaphra_tp5();
+                                            close()
+                                        }
+                                    }
+
+///-haf  29-11-2025
                                 }
                             }
 
@@ -1324,6 +2005,7 @@ Rectangle {
         }
     }
     Component.onCompleted: {
+        console.log("temps1amodelQexp_tp5="+temps1amodelQexp_tp5)
         ///console.log("settings.dh1tableModel1_venturie_tp5=:"+settings.dh1tableModel1_venturie_tp5)
         tableModel1_venturie_tp5.appendRow({Qexp:settings.qexp1tableModel1_venturie_tp5,DH:settings.dh1tableModel1_venturie_tp5,Qtheo:settings.qtheo1tableModel1_venturie_tp5,Cd:settings.cd1tableModel1_venturie_tp5})
         tableModel1_venturie_tp5.appendRow({Qexp:settings.qexp2tableModel1_venturie_tp5,DH:settings.dh2tableModel1_venturie_tp5,Qtheo:settings.qtheo2tableModel1_venturie_tp5,Cd:settings.cd2tableModel1_venturie_tp5})
