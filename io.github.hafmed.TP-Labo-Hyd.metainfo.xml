@@ -5,6 +5,9 @@
     <summary>Application provides calculation in practical works in fluid mechanic laboratory.</summary>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0-or-later</project_license>
+    <requires>
+      <display_length compare="ge">360</display_length>
+    </requires>
     <supports>
         <control>pointing</control>
         <control>keyboard</control>
@@ -52,6 +55,16 @@
     </description>
     <launchable type="desktop-id">io.github.hafmed.TP-Labo-Hyd.desktop</launchable>
     <releases>
+        <release version="2.1.0" date="2026-04-09">
+            <url type="details">https://sites.google.com/view/tp-labo-hydraulique/</url>
+            <description>
+                <p>Latest stable release.</p>
+                <ul>
+                    <li>Add linear regression to determine the discharge coefficient of the venturi and orifice;</li>
+                    <li>Minor bug fixes.</li>
+                </ul>
+            </description>
+        </release>
         <release version="2.0.9" date="2026-04-07">
             <url type="details">https://sites.google.com/view/tp-labo-hydraulique/</url>
             <description>
