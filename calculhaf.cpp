@@ -1,37 +1,26 @@
 // Copyright (C) 2023 The Qt Company Ltd.
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 #include "fparser.hh"
-#include <iostream>
 #include <string>
 #include <math.h>
 #include <string>
 #include <QMessageBox>
 
 #include <cmath>
-#include <stdio.h>
+#include <iostream>
 using namespace std;
 #include <limits>
 
 #include "calculhaf.h"
 
-// #include <QAreaSeries>
 #include <QQuickItem>
 #include <QQuickView>
-// #include <QRandomGenerator>
-// #include <QtMath>
-// #include <QXYSeries>
 
-// Q_DECLARE_METATYPE(QAbstractSeries *)
-// Q_DECLARE_METATYPE(QAbstractAxis *)
 
 CalculHaf::CalculHaf(QQuickView *appViewer, QObject *parent)
     : QObject(parent)
     , m_appViewer(appViewer)
 {
-    // qRegisterMetaType<QAbstractSeries*>();
-    // qRegisterMetaType<QAbstractAxis*>();
-
-    // generateData(0, 5, 1024);
 }
 void CalculHaf::EvalErrorfunHAF(int fparser_EvalError, QString fx, double x,int ndecimaux)
 {
@@ -65,7 +54,8 @@ void CalculHaf::EvalErrorfunHAF(int fparser_EvalError, QString fx, double x,int 
 
 void CalculHaf::hafresolutioneqtnonlineaire_newtonraphson(QString fx,QString fxprim, double x0tp6,double epstp6,int nmaxtp6)
 {
-
+    /////cout<<"fx="<<fxprim.toStdString()<< endl;
+    /////cout<<"fxprim="<<fxprim.toStdString()<< endl;
     double x[nmaxtp6];
     x[0]=x0tp6;
     if(x[0]==std::numeric_limits<double>::infinity() || x[0]==-std::numeric_limits<double>::infinity()){
@@ -111,7 +101,7 @@ void CalculHaf::hafresolutioneqtnonlineaire_newtonraphson(QString fx,QString fxp
         emit requestXi(i,x[i]);
 
     }
-    emit requestVtheo(x[i]);
+    emit requestVtheo(i,x[i]);
     emit requestSelectEndtable();
 }
 

@@ -29,7 +29,7 @@ public:
 signals:
     void requestDialog(QString title,QString error);
     void requestXi(int i,double xi);
-    void requestVtheo(double vtheo);
+    void requestVtheo(int i,double vtheo);
 
     void requestSelectEndtable();
 

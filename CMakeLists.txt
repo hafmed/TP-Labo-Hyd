@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(tp_labo_hyd VERSION 2.0.9 LANGUAGES CXX)
+project(tp_labo_hyd_ver2.1.0 VERSION 2.1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -35,11 +35,11 @@ set_target_properties(apptp_labo_hyd PROPERTIES
 )
 
 target_link_libraries(apptp_labo_hyd PUBLIC
-    Qt6::Charts
-    Qt6::Core
-    Qt6::Gui
-    Qt6::Qml
-    Qt6::Quick
+    Qt::Charts
+    Qt::Core
+    Qt::Gui
+    Qt::Qml
+    Qt::Quick
     Qt6::QuickControls2
 )
 
