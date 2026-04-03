@@ -61,6 +61,7 @@
                 <p>Latest stable release.</p>
                 <ul>
                     <li>Add linear regression to determine the discharge coefficient of the venturi and orifice;</li>
+                    <li>Add pressure transducer calibration curve using a Lagrange regression polynomial;</li>
                     <li>Minor bug fixes.</li>
                 </ul>
             </description>
