@@ -231,7 +231,7 @@ Item {
         property real t_moy
 
     }
-    property string appVer: "2.0.9"
+    property string appVer: "2.1.0"
     ///property bool firstuseofapp
     property int scopeViewcount:scopeView.count
     property int tabBarcurrentIndex: 0

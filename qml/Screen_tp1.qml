@@ -307,13 +307,28 @@ Rectangle {
                 }
 
             }
-            Row {
+            TabBar {
+                id: tabbar1_tp1
                 width: parent.width
-                spacing: 1
+                TabButton {
+                    text: qsTr("Table")
+                    width: implicitWidth
+                }
+                TabButton {
+                    text: qsTr("Graph")
+                    width: implicitWidth
+                }
+                onCurrentIndexChanged: tableModel1_tp1.updatechart();
+            }
+            StackLayout {
+                id: view
+                width: parent.width
+                currentIndex: tabbar1_tp1.currentIndex
+                ///anchors.fill: parent
                 Rectangle {
                     id:rectabview
                     width: 135
-                    height: 190
+                    height: app.height -rowtp1.height-150
                     color: "transparent"
                     HorizontalHeaderView {
                         id: horizontalHeader1_tp1
@@ -458,7 +473,7 @@ Rectangle {
                 }
                 Rectangle {
                     width: parent.width-rectabview.width
-                    height: rectabview.height
+                    height: app.height -rowtp1.height-150
                     color:"transparent"
                     ChartView {
                         id: myChart

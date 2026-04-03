@@ -287,7 +287,7 @@ Rectangle {
                 Rectangle {
                     id:rectabview1_tp3
                     width: parent.width
-                    height: 250
+                    height: app.height -rowtp1.height-150
                     color: "transparent"
                     HorizontalHeaderView {
                         id: horizontalHeader1_tp3
@@ -306,6 +306,7 @@ Rectangle {
                     }
                     TableView {
                         id:tabview1_tp3
+                        height: rectabview1_tp3.height
                         anchors.left: verticalHeader1_tp3.right
                         anchors.top: horizontalHeader1_tp3.bottom
                         anchors.right: parent.right
@@ -327,8 +328,8 @@ Rectangle {
                             function updatechart1_tp3()
                             {
                                 myChart_tp3.removeAllSeries();
-                                var line1 = myChart_tp3.createSeries(scatterSerie1_tp3, "Degrees =f (P) ", axisX, axisY);
-                                var line2 = myChart_tp3.createSeries(scatterSerie2_tp3, "Tension =f (P) ", axisX, axisZ);
+                                var line1 = myChart_tp3.createSeries(ChartView.SeriesTypeScatter, "Degrees=f(Pressure) ", axisX, axisY);
+                                var line2 = myChart_tp3.createSeries(ChartView.SeriesTypeScatter, "Tension=f(Pressure) ", axisX, axisZ);
                                 line1.pointsVisible = true;
                                 line2.pointsVisible = true;
 
@@ -391,6 +392,68 @@ Rectangle {
                                 tensiontableModel3_tp3=tableModel1_tp3.rows[2].Tension
                                 tensiontableModel4_tp3=tableModel1_tp3.rows[3].Tension
                                 tensiontableModel5_tp3=tableModel1_tp3.rows[4].Tension
+                                /////-------------5-4-2026---------------------------------------------
+                                var n=tableModel1_tp3.rowCount-1;
+                                var x = new Array(n);
+                                var y = new Array(n);
+                                var ypoly = new Array(n);
+
+                                for ( i = 0; i < tableModel1_tp3.rowCount; ++i) {
+                                    x[i]= tableModel1_tp3.rows[i].Pressure;
+                                    y[i]= tableModel1_tp3.rows[i].Tension;
+                                }
+
+                                var s = new Array(n);
+                                var cof = new Array(n);
+
+                                var k,j,i;
+                                var phi,ff,b;
+
+                                for (i=0;i<=n;i++)
+                                    s[i]=cof[i]=0.0;
+                                s[n] = -x[0];
+                                for (i=1;i<=n;i++) {
+                                    for (j=n-i;j<=n-1;j++)
+                                        s[j] -= x[i]*s[j+1];
+                                    s[n] -= x[i];
+                                }
+                                for (j=0;j<=n;j++) {
+                                    phi=n+1;
+                                    for (k=n;k>=1;k--)
+                                        phi=k*s[k]+x[j]*phi;
+                                    ff=y[j]/phi;
+                                    b=1.0;
+                                    for (k=n;k>=0;k--) {
+                                        cof[k] += b*ff;
+                                        b=s[k]+x[j]*b;
+                                    }
+                                }
+                                for (i=n;i>=0;i--){
+                                    /////console.log("cof["+i+"]="+cof[i]);
+                                }
+                                for ( i = 0; i <= n; ++i){
+                                    ypoly[i]=cof[4]*x[i]**4+cof[3]*x[i]**3+cof[2]*x[i]**2+cof[1]*x[i]+cof[0]
+                                    /////ypoly[i]=8.27636e-07*x[i]**4-0.000269462*x[i]**3+0.0320606*x[i]**2-1.23987*x[i]+28.007
+                                    /////console.log("ypoly["+i+"]="+ypoly[i]+" et y["+i+"]="+y[i]+" et x["+i+"]="+x[i]);
+                                }
+                                /////----------5-4-2026-------------------------------------
+                                var line3 = myChart_tp3.createSeries(ChartView.SeriesTypeLine, "Pressure transducer calibration curve", axisX, axisZ);
+
+                                line3.color = Qt.rgba(Math.random(),Math.random(),Math.random(),1);
+                                line3.hovered.connect(function(point, state){ console.log(point); }); // connect onHovered signal to a function
+                                // for (i = 0; i < tableModel1_tp3.rowCount; i++)  {
+                                //     if (tableModel1_tp3.rows[i].Pressure!==0
+                                //             && ypoly[i]!==""
+                                //             )
+                                //         line3.append(tableModel1_tp3.rows[i].Pressure,ypoly[i])
+                                // }
+                                for (var xi = Math.round(miniPressure-0.1*miniPressure); xi <= Math.round(maxPressure+0.1*maxPressure); xi += 0.1) {
+                                    line3.append(xi, cof[4]*xi**4+cof[3]*xi**3+cof[2]*xi**2+cof[1]*xi+cof[0]);
+                                }
+                                /////line1.append(0,0)
+                                /////line1.append(Math.ceil(maxQexp_Diaphra+0.1*maxQexp_Diaphra),(Math.ceil(maxQexp_Diaphra+0.1*maxQexp_Diaphra))/Cdreg)
+                                /////-----------------------------------------------------------------------------------
+                                return cof;
                             }
                         }
                         delegate: DelegateChooser {
@@ -492,18 +555,31 @@ Rectangle {
 
                 Rectangle {
                     width: parent.width-rectabview1_tp3.width
-                    height: rectabview1_tp3.height
+                    height: app.height -rowtp1.height-150
                     color:"transparent"
+                    TextField {
+                        id:textcalculploy_tp3
+                        width: parent.width
+                        readOnly : true
+                        selectByMouse: false
+                        placeholderText: qsTr("Pressure transducer calibration curve using a Lagrange regression polynomial.")
+                        text: "P(x)="+(tableModel1_tp3.updatechart1_tp3())[4].toLocaleString(Qt.locale(), 'e', 3) +"*x^4"+(tableModel1_tp3.updatechart1_tp3()[3]>=0? "+":"")+(tableModel1_tp3.updatechart1_tp3())[3].toLocaleString(Qt.locale(), 'e', 3)
+                        +"*x^3"+(tableModel1_tp3.updatechart1_tp3()[2]>=0? "+":"")+(tableModel1_tp3.updatechart1_tp3())[2].toLocaleString(Qt.locale(), 'e', 3) +"*x^2"+
+                        (tableModel1_tp3.updatechart1_tp3()[1]>=0? "+":"")+(tableModel1_tp3.updatechart1_tp3())[1].toLocaleString(Qt.locale(), 'e', 3) +
+                        "*x"+(tableModel1_tp3.updatechart1_tp3()[0]>=0? "+":"")+(tableModel1_tp3.updatechart1_tp3())[0].toLocaleString(Qt.locale(), 'e', 3)
+                        wrapMode: Text.WrapAnywhere
+                    }
                     ChartView {
                         id: myChart_tp3
                         clip: true
+                        anchors.top: textcalculploy_tp3.bottom
                         margins.left: 0
                         margins.right: 0
                         margins.top: 0
                         margins.bottom: 0
                         ///title: " \u03B7 = f (T°C) "
                         width: parent.width
-                        height: parent.height
+                        height: parent.height-textcalculploy_tp3.height
                         antialiasing: true
                         animationOptions: ChartView.SeriesAnimations
                         ///legend.visible: false
@@ -533,19 +609,19 @@ Rectangle {
                         ValueAxis {
                             id: axisX
                             gridVisible: true
-                            titleText:  "Calibrator kN/m2"///"T (&deg;C)"
+                            titleText:  "Applied pressure (kN/m2)"
                             ///labelFormat: "%d&deg;C"
                         }
                         ValueAxis {
                             id: axisY
                             gridVisible: true
-                            titleText: "Degrees"///"Calibrator kN/m2"
+                            titleText: "Degrees"
                             ///labelFormat: "%d mPa.s"
                         }
                         ValueAxis {
                             id: axisZ
                             gridVisible: true
-                            titleText: "mV"///"Calibrator kN/m2"
+                            titleText: "Output voltage (mV)"
                             ///labelFormat: "%d mPa.s"
                         }
                         PinchArea{

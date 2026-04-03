@@ -48,8 +48,16 @@ Rectangle {
         function onRequestXi(i,xi){
             tableModelxi_tp6.appendRow({i:i,xi:xi})
         }
-        function onRequestVtheo(Vtheo){
-            vtheo=1/Vtheo
+        function onRequestVtheo(i,Vtheo){
+            if (i===151){
+                vtheo=0
+                label8_tp6.text="The method did not converge after 151 iterations!"
+                label8_tp6.color="red"
+            }else{
+                vtheo=1/Vtheo
+                label8_tp6.text="The method converge after "+i+" iterations!"
+                label8_tp6.color="green"
+            }
         }
         function onRequestSelectEndtable(){
             tableVerticalBarxi_tp6.setPosition(1 - tableVerticalBarxi_tp6.size)
@@ -513,8 +521,10 @@ Rectangle {
                 readOnly : true
                 selectByMouse: false
                 placeholderText: qsTr("The polynomial to solve for which the value of v is equivalent to 1/x. fx")
-                text: (a_tp6*1000).toFixed(3)+"*x^4"+(b_tp6*1000).toFixed(3)+"*x^2"+(c_tp6*1000).toFixed(3)+"*x+"+(d_tp6*1000).toFixed(3)
-                onTextChanged: fx=a_tp6+"*x^4"+b_tp6+"*x^2"+c_tp6+"*x+"+d_tp6
+                text: (a_tp6*1000).toFixed(3)+"*x^4"+(b_tp6>=0? "+":"")+(b_tp6*1000).toFixed(3)+"*x^2"+
+                      (c_tp6>=0? "+":"")+(c_tp6*1000).toFixed(3)+"*x"+(d_tp6>=0? "+":"")+(d_tp6*1000).toFixed(3)
+                onTextChanged: fx=a_tp6+"*x^4"+(b_tp6>=0? "+":"")+b_tp6+"*x^2"+(c_tp6>=0? "+":"")+c_tp6+"*x"+
+                               (d_tp6>=0? "+":"")+d_tp6
                 color: "red"
             }
             TextField {
@@ -523,8 +533,9 @@ Rectangle {
                 readOnly : true
                 selectByMouse: false
                 placeholderText: qsTr("The derivative of the polynomial. fxprim")
-                text: (4*a_tp6*1000).toFixed(3)+"*x^3"+(2*b_tp6*1000).toFixed(3)+"*x"+(c_tp6*1000).toFixed(3)
-                onTextChanged: fxprim=4*a_tp6+"*x^3"+2*b_tp6+"*x"+c_tp6
+                text: (4*a_tp6*1000).toFixed(3)+"*x^3"+(b_tp6>=0? "+":"")+(2*b_tp6*1000).toFixed(3)+"*x"+
+                      (c_tp6>=0? "+":"")+(c_tp6*1000).toFixed(3)
+                onTextChanged: fxprim=4*a_tp6+"*x^3"+(b_tp6>=0? "+":"")+2*b_tp6+"*x"+(c_tp6>=0? "+":"")+c_tp6
             }
             Button {
                 width: parent.width
@@ -532,6 +543,8 @@ Rectangle {
                 onClicked: {
                     tp_6_Dialog1.open()
                     tableModelxi_tp6.clear()
+                    label8_tp6.text="Results"
+                    label8_tp6.color=Material.primaryTextColor
                 }
             }
             Dialog {
@@ -547,7 +560,7 @@ Rectangle {
                         text: qsTr("Click to resolve the polynomial (v=1/x)")
                         onClicked: {
                             tableModelxi_tp6.clear()
-                            CalculHaf.hafresolutioneqtnonlineaire_newtonraphson(fx,fxprim,10,0.000001,51)
+                            CalculHaf.hafresolutioneqtnonlineaire_newtonraphson(fx,fxprim,10,0.000001,151)
                         }
                     }
                     Row {
@@ -658,7 +671,7 @@ Rectangle {
                         Label {
                             id:label8_tp6
                             width: label3_tp6.text.width
-                            text: "results"
+                            text: "Results"
                             anchors.fill: parent.center
                         }
                         ToolSeparator {

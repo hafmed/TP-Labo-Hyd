@@ -161,13 +161,17 @@ Rectangle {
                         id: view2_tp4
                         width: parent.width
                         currentIndex: tabbar2_tp4.currentIndex
-                        Image {
-                            id: imagehelp1_tp5
-                            width: parent.width
-                            ///scale: 0.25
-                            smooth: true
-                            fillMode: Image.PreserveAspectFit
-                            source: "images/TP_5-Fig1.jpg"
+                        ColumnLayout {
+                            anchors.fill: parent
+                            Image {
+                                id: imagehelp1_tp5
+                                width: parent.width
+                                ///scale: 0.25
+                                smooth: true
+                                fillMode: Image.PreserveAspectFit
+                                source: "images/TP_5-Fig1.jpg"
+                               ///// Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                            }
                         }
                         Column {
                             id:column4_tp4
@@ -197,7 +201,7 @@ Rectangle {
                             Rectangle {
                                 id:rectabview1_tp5
                                 width: parent.width
-                                height: 250
+                                height: app.height -rowtp1.height-150
                                 color: "transparent"
                                 HorizontalHeaderView {
                                     id: horizontalHeader1_tp5
@@ -1177,13 +1181,17 @@ Rectangle {
                         id: view2_Diaphra_tp5
                         width: parent.width
                         currentIndex: tabbar2_Diaphra_tp5.currentIndex
-                        Image {
-                            id: imagehelp2_tp5
-                            width: parent.width
-                            ///scale: 0.25
-                            smooth: true
-                            fillMode: Image.PreserveAspectFit
-                            source: "images/TP_5-Fig1.jpg"
+                        ColumnLayout {
+                            anchors.fill: parent
+                            Image {
+                                id: imagehelp2_tp5
+                                width: parent.width
+                                ///scale: 0.25
+                                smooth: true
+                                fillMode: Image.PreserveAspectFit
+                                source: "images/TP_5-Fig1.jpg"
+                                /////Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                            }
                         }
                         Column {
                             id:column4_Diaphra_tp5
@@ -1213,7 +1221,7 @@ Rectangle {
                             Rectangle {
                                 id:rectabview1_Diaphra_tp5
                                 width: parent.width
-                                height: 250
+                                height: app.height -rowtp1.height-150
                                 color: "transparent"
                                 HorizontalHeaderView {
                                     id: horizontalHeader2_tp5
