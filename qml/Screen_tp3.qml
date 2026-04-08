@@ -8,8 +8,7 @@ import QtQuick.Layouts
 
 Rectangle {
     width: app.width
-    height: app.height-rect.height
-
+    height: app.height-rect.height-35
     color: Material.dialogColor
 
     function calculmass() {
@@ -329,7 +328,7 @@ Rectangle {
                             {
                                 myChart_tp3.removeAllSeries();
                                 var line1 = myChart_tp3.createSeries(ChartView.SeriesTypeScatter, "Degrees=f(Pressure) ", axisX, axisY);
-                                var line2 = myChart_tp3.createSeries(ChartView.SeriesTypeScatter, "Tension=f(Pressure) ", axisX, axisZ);
+                                var line2 = myChart_tp3.createSeries(ChartView.SeriesTypeScatter, "Voltage=f(Pressure) ", axisX, axisZ);
                                 line1.pointsVisible = true;
                                 line2.pointsVisible = true;
 

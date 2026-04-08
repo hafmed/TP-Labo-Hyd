@@ -5,8 +5,7 @@ import QtQuick.Controls.Material 2.12
 
 Rectangle {
     width: app.width
-    height: app.height-rect.height
-
+    height: app.height-rect.height-35
     color: Material.dialogColor
 
     function configcaractball(index) {

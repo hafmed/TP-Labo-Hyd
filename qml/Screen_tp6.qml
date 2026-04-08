@@ -8,8 +8,7 @@ import QtQuick.Layouts
 
 Rectangle {
     width: app.width
-    height: app.height-rect.height
-
+    height: app.height-rect.height-35
     color: Material.dialogColor
 
     property real vtheo
@@ -560,7 +559,17 @@ Rectangle {
                         text: qsTr("Click to resolve the polynomial (v=1/x)")
                         onClicked: {
                             tableModelxi_tp6.clear()
-                            CalculHaf.hafresolutioneqtnonlineaire_newtonraphson(fx,fxprim,10,0.000001,151)
+                            CalculHaf.hafresolutioneqtnonlineaire_newtonraphson(fx,fxprim,x0_tp6,0.000001,151)
+                        }
+                    }
+                    TextField {
+                        id:textx0_tp6
+                        width: parent.width
+                        placeholderText: qsTr("x(0)")
+                        text: settings.x0_tp6
+                        inputMethodHints: Qt.ImhDigitsOnly
+                        onTextChanged: {if (settings.x0_tp6==="nan" || settings.x0_tp6==="NaN") textx0_tp6.text=0 ;
+                            x0_tp6=textx0_tp6.text
                         }
                     }
                     Row {

@@ -229,9 +229,10 @@ Item {
         property real t3_tp6
         property real t4_tp6
         property real t_moy
+        property real x0_tp6
 
     }
-    property string appVer: "2.1.0"
+    property string appVer: "2.1.7"
     ///property bool firstuseofapp
     property int scopeViewcount:scopeView.count
     property int tabBarcurrentIndex: 0
@@ -460,6 +461,7 @@ Item {
     property real t3_tp6
     property real t4_tp6
     property real t_moy
+    property real x0_tp6
 
     function savesettings() {
         ///settings.firstuseofapp=firstuseofapp
@@ -654,6 +656,7 @@ Item {
         settings.b_tp6=b_tp6
         settings.c_tp6=c_tp6
         settings.d_tp6=d_tp6
+        settings.x0_tp6=x0_tp6
 
     }
     function loadsettings() {
@@ -849,6 +852,7 @@ Item {
         b_tp6=settings.b_tp6
         c_tp6=settings.c_tp6
         d_tp6=settings.d_tp6
+        x0_tp6=settings.x0_tp6
 
     }
     function loaddefaultsettings() {
@@ -1037,6 +1041,7 @@ Item {
         b_tp6=0
         c_tp6=0
         d_tp6=0
+        x0_tp6=10
 
 
     }

@@ -8,7 +8,7 @@ import QtQuick.Layouts
 
 Rectangle {
     width: app.width
-    height: app.height-rect.height
+    height: app.height-rect.height-35
     color: Material.dialogColor
 
     ScrollView {
