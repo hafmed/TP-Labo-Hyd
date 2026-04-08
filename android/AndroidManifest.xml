@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.hafsoftdz.tp_labo_hyd" android:installLocation="auto" android:versionCode="164205" android:versionName="2.0.5">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.hafsoftdz.tp_labo_hyd" android:installLocation="auto" android:versionCode="164217" android:versionName="2.1.7">
 
     <!-- %%INSERT_FEATURES -->
     <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true"/>
-    <application android:name="org.qtproject.qt.android.bindings.QtApplication" android:hardwareAccelerated="true" android:label="TP_Labo_Hyd" android:requestLegacyExternalStorage="true" android:allowBackup="true" android:fullBackupOnly="false" android:icon="@drawable/icon">
+    <application android:theme="@style/Theme.rando" android:name="org.qtproject.qt.android.bindings.QtApplication" android:hardwareAccelerated="true" android:label="TP_Labo_Hyd" android:requestLegacyExternalStorage="true" android:allowBackup="true" android:fullBackupOnly="false" android:icon="@drawable/icon">
         <activity android:name="org.qtproject.qt.android.bindings.QtActivity" android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:launchMode="singleTop" android:screenOrientation="sensor" android:exported="true" android:label="TP_Labo_Hyd">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
