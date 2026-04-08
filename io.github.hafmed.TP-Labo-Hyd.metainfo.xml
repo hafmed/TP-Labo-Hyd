@@ -55,6 +55,17 @@
     </description>
     <launchable type="desktop-id">io.github.hafmed.TP-Labo-Hyd.desktop</launchable>
     <releases>
+        <release version="2.1.7" date="2026-04-10">
+            <url type="details">https://sites.google.com/view/tp-labo-hydraulique/</url>
+            <description>
+                <p>Latest stable release.</p>
+                <ul>
+                    <li>Add linear regression to determine the discharge coefficient of the venturi and orifice;</li>
+                    <li>Add pressure transducer calibration curve using a Lagrange regression polynomial;</li>
+                    <li>Minor bug fixes.</li>
+                </ul>
+            </description>
+        </release>
         <release version="2.1.0" date="2026-04-09">
             <url type="details">https://sites.google.com/view/tp-labo-hydraulique/</url>
             <description>
