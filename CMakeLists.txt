@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(tp_labo_hyd_ver2.1.0 VERSION 2.1.0 LANGUAGES CXX)
+project(tp_labo_hyd_ver2.1.7 VERSION 2.1.7 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 

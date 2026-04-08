@@ -81,6 +81,8 @@ int main(int argc, char *argv[])
 
     viewer.setSource(QUrl("qrc:/qml/Main.qml"));
     viewer.setResizeMode(QQuickView::SizeRootObjectToView);
+    viewer.setFlags(Qt::ExpandedClientAreaHint);
+    viewer.setFlags(Qt::NoTitleBarBackgroundHint);
    /// viewer.setColor(QColor("#404040"));
     viewer.show();
 
